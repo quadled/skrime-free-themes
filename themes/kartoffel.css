@@ -1,0 +1,93 @@
+/* Skrime Theme: kartoffel */
+
+body.ext-theme-kartoffel,
+body.ext-theme-kartoffel main,
+body.ext-theme-kartoffel .page-content {
+    background-image:
+        radial-gradient(circle at 12px 12px, rgba(217, 164, 65, 0.12) 2px, transparent 3px),
+        radial-gradient(circle at 44px 36px, rgba(139, 90, 43, 0.25) 3px, transparent 4px),
+        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(217, 164, 65, 0.18), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 0% 0%, rgba(139, 90, 43, 0.22), transparent 70%),
+        linear-gradient(180deg, #22160c 0%, #1a120a 70%) !important;
+    background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%, 100% 100% !important;
+    background-attachment: fixed !important;
+}
+
+body.ext-theme-active.ext-theme-kartoffel .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-kartoffel .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-kartoffel .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-kartoffel .dropdown-menu,
+body.ext-theme-active.ext-theme-kartoffel .modal-content {
+    background-color: rgba(42, 29, 17, 0.92) !important;
+    border: 1px solid rgba(217, 164, 65, 0.3) !important;
+    border-radius: 18px 22px 16px 24px / 22px 16px 24px 18px !important; /* leicht "knollig" */
+    box-shadow: inset 0 2px 0 rgba(240, 213, 106, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+body.ext-theme-active.ext-theme-kartoffel .card:not([style*="background-image"]):hover {
+    border-color: #d9a441 !important;
+    box-shadow: inset 0 2px 0 #f0d56a, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.45);
+    transform: translateY(-2px);
+}
+
+body.ext-theme-active.ext-theme-kartoffel .sidebar-wrapper {
+    background-color: #120c06 !important;
+    border-right: 1px solid rgba(217, 164, 65, 0.3) !important;
+}
+body.ext-theme-active.ext-theme-kartoffel .header-bar,
+body.ext-theme-active.ext-theme-kartoffel .top-header {
+    background-color: rgba(18, 12, 6, 0.9) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(217, 164, 65, 0.3) !important;
+}
+body.ext-theme-active.ext-theme-kartoffel .sidebar-menu li.active > a {
+    background: linear-gradient(90deg, rgba(217, 164, 65, 0.2), transparent) !important;
+    box-shadow: inset 3px 0 0 #d9a441;
+}
+
+/* Buttons: Pommes-Gold bis Röstbraun */
+body.ext-theme-active.ext-theme-kartoffel .btn-primary,
+body.ext-theme-active.ext-theme-kartoffel .btn-success,
+body.ext-theme-active.ext-theme-kartoffel .btn-info,
+body.ext-theme-active.ext-theme-kartoffel .nav-pills .nav-link.active {
+    background-image: linear-gradient(135deg, #f0d56a 0%, #d9a441 50%, #a8692a 100%) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    box-shadow: 0 0 12px var(--ext-glow);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+body.ext-theme-active.ext-theme-kartoffel .btn-primary:hover,
+body.ext-theme-active.ext-theme-kartoffel .btn-success:hover,
+body.ext-theme-active.ext-theme-kartoffel .btn-info:hover {
+    box-shadow: 0 0 24px rgba(217, 164, 65, 0.6);
+    transform: translateY(-1px) rotate(-1deg);
+    filter: brightness(1.06);
+}
+
+body.ext-theme-active.ext-theme-kartoffel h1,
+body.ext-theme-active.ext-theme-kartoffel h2 {
+    text-shadow: 0 0 14px rgba(217, 164, 65, 0.35), 2px 2px 0 rgba(107, 74, 43, 0.6);
+}
+body.ext-theme-active.ext-theme-kartoffel a:hover { color: #f0d56a !important; }
+
+/* Duotone-Icons: Gold + Erdbraun */
+body.ext-theme-active.ext-theme-kartoffel i[class*="fa-"]:not(.btn i) {
+    --fa-secondary-color: #a8692a !important;
+    --fa-secondary-opacity: 0.95 !important;
+}
+
+body.ext-theme-kartoffel ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-kartoffel ::-webkit-scrollbar-track { background: #120c06; }
+body.ext-theme-kartoffel ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #d9a441, #8b5a2b); border-radius: 6px; }
+body.ext-theme-kartoffel ::selection { background: rgba(217, 164, 65, 0.45); color: #fff; }
+
+#ext-potato-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.85;
+}

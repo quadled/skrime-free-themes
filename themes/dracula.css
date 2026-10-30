@@ -1,0 +1,66 @@
+/* Skrime Theme: dracula */
+
+body.ext-theme-dracula,
+body.ext-theme-dracula main,
+body.ext-theme-dracula .page-content {
+    background-image:
+        radial-gradient(ellipse 60% 40% at 0% 0%, rgba(189, 147, 249, 0.16), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(255, 121, 198, 0.12), transparent 70%) !important;
+    background-attachment: fixed !important;
+}
+
+body.ext-theme-active.ext-theme-dracula .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-dracula .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-dracula .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-dracula .dropdown-menu,
+body.ext-theme-active.ext-theme-dracula .modal-content {
+    border: 1px solid #44475a !important;
+    box-shadow: inset 0 2px 0 rgba(189, 147, 249, 0.55), 0 6px 22px rgba(0, 0, 0, 0.35);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+body.ext-theme-active.ext-theme-dracula .card:not([style*="background-image"]):hover {
+    border-color: #bd93f9 !important;
+    box-shadow: inset 0 2px 0 #ff79c6, 0 0 20px var(--ext-glow), 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+body.ext-theme-active.ext-theme-dracula .sidebar-wrapper {
+    background-color: #191a21 !important;
+    border-right: 1px solid #44475a !important;
+}
+body.ext-theme-active.ext-theme-dracula .header-bar,
+body.ext-theme-active.ext-theme-dracula .top-header {
+    background-color: rgba(25, 26, 33, 0.9) !important;
+    border-bottom: 1px solid #44475a !important;
+}
+body.ext-theme-active.ext-theme-dracula .sidebar-menu li.active > a {
+    background: linear-gradient(90deg, rgba(255, 121, 198, 0.18), transparent) !important;
+    box-shadow: inset 3px 0 0 #ff79c6;
+}
+
+body.ext-theme-active.ext-theme-dracula .btn-primary,
+body.ext-theme-active.ext-theme-dracula .btn-success,
+body.ext-theme-active.ext-theme-dracula .btn-info,
+body.ext-theme-active.ext-theme-dracula .nav-pills .nav-link.active {
+    background-image: linear-gradient(135deg, #ff79c6 0%, #bd93f9 100%) !important;
+    border: none !important;
+    transition: box-shadow 0.2s ease, filter 0.2s ease;
+}
+body.ext-theme-active.ext-theme-dracula .btn-primary:hover,
+body.ext-theme-active.ext-theme-dracula .btn-success:hover,
+body.ext-theme-active.ext-theme-dracula .btn-info:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 18px var(--ext-glow);
+}
+
+body.ext-theme-active.ext-theme-dracula a:hover { color: #8be9fd !important; }
+
+/* Duotone-Icons: Pink + Cyan */
+body.ext-theme-active.ext-theme-dracula i[class*="fa-"]:not(.btn i) {
+    --fa-secondary-color: #8be9fd !important;
+    --fa-secondary-opacity: 0.85 !important;
+}
+
+body.ext-theme-dracula ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-dracula ::-webkit-scrollbar-track { background: #191a21; }
+body.ext-theme-dracula ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff79c6, #bd93f9); border-radius: 6px; }
+body.ext-theme-dracula ::selection { background: rgba(189, 147, 249, 0.45); color: #fff; }

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Skrime Theme Editor & Community Hub",
-  "version": "1.1.0",
-  "description": "Erlaubt das Ändern des Themes auf Skrime.eu mit automatischem GitHub-Updater (quadled/skrime-free-themes)",
+  "name": "Custom Themes",
+  "version": "1.2.0",
+  "description": "Custom Themes für Skrime.eu, 24fire.de und weitere Webseiten mit automatischem GitHub-Updater",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -16,14 +16,16 @@
     "https://raw.githubusercontent.com/quadled/skrime-free-themes/*",
     "https://api.github.com/repos/quadled/skrime-free-themes/*",
     "*://*.skrime.eu/*",
-    "*://skrime.eu/*"
+    "*://skrime.eu/*",
+    "*://*.24fire.de/*",
+    "*://24fire.de/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "Skrime Themes",
+    "default_title": "Custom Themes",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
@@ -34,7 +36,9 @@
     {
       "matches": [
         "*://*.skrime.eu/*",
-        "*://skrime.eu/*"
+        "*://skrime.eu/*",
+        "*://*.24fire.de/*",
+        "*://24fire.de/*"
       ],
       "js": ["content.js"],
       "run_at": "document_start"

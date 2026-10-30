@@ -96,9 +96,16 @@ async function checkForThemeUpdates(isManual = false) {
 
         console.log(`[Skrime Updater] Update erfolgreich! ${themeIds.length} Themes bereit (${newThemesCount} neu, ${updatedThemesCount} aktualisiert).`);
 
-        // 5. Offene Skrime-Tabs benachrichtigen
+        // 5. Offene Tabs benachrichtigen (Skrime & 24Fire)
         try {
-            const tabs = await chrome.tabs.query({ url: ["*://*.skrime.eu/*", "*://skrime.eu/*"] });
+            const tabs = await chrome.tabs.query({ 
+                url: [
+                    "*://*.skrime.eu/*", 
+                    "*://skrime.eu/*",
+                    "*://*.24fire.de/*",
+                    "*://24fire.de/*"
+                ] 
+            });
             for (const tab of tabs) {
                 chrome.tabs.sendMessage(tab.id, {
                     action: "themesUpdated",

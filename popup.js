@@ -1,19 +1,7 @@
 // =====================================================================
-// SKRIME THEMES - POPUP CONTROLLER
+// CUSTOM THEMES - POPUP CONTROLLER
+// Unterstützt skrime.eu und 24fire.de mit dynamischen GitHub-Themes
 // =====================================================================
-
-const DEFAULT_THEMES = {
-  "default": { name: "Skrime Standard", accent: "#6c757d" },
-  "dracula": { name: "Dracula Theme", accent: "#ff79c6" },
-  "matrix": { name: "Matrix Theme", accent: "#00ff41" },
-  "cyberpunk": { name: "Cyberpunk", accent: "#ff2bd6" },
-  "christmas": { name: "Winter Theme", accent: "#7fd4ff" },
-  "silvester": { name: "Silvester Theme", accent: "#ffd54a" },
-  "halloween": { name: "Halloween Theme", accent: "#ff7a1a" },
-  "aprilscherz": { name: "April, April!", accent: "#00ffff" },
-  "kartoffel": { name: "Kartoffel Theme", accent: "#d9a441" },
-  "minimal-purple": { name: "Minimal Purple", accent: "#bb86fc" }
-};
 
 function formatRelativeTime(timestamp) {
   if (!timestamp) return "Noch nie geprüft";
@@ -27,6 +15,7 @@ function formatRelativeTime(timestamp) {
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const siteSelect = document.getElementById("site-select");
   const themeSelect = document.getElementById("theme-select");
   const activeNameEl = document.getElementById("active-theme-name");
   const colorDotEl = document.getElementById("theme-color-dot");
@@ -36,66 +25,127 @@ document.addEventListener("DOMContentLoaded", async () => {
   const updateSpinner = document.getElementById("update-spinner");
   const updateBtnText = document.getElementById("update-btn-text");
   const statusMsgEl = document.getElementById("update-status-msg");
+  const siteLabel = document.getElementById("current-theme-site-label");
 
   let allThemes = {};
+  let currentSite = "skrime.eu";
+
+  // 1. Automatisch aktive Seite anhand des aktuellen Tabs erkennen
+  try {
+    const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    if (activeTab && activeTab.url) {
+      if (activeTab.url.includes("24fire.de")) {
+        currentSite = "24fire.de";
+        siteSelect.value = "24fire.de";
+      } else if (activeTab.url.includes("skrime.eu")) {
+        currentSite = "skrime.eu";
+        siteSelect.value = "skrime.eu";
+      }
+    }
+  } catch (e) {}
+
+  function getStorageKeyForSite(site) {
+    return site === "24fire.de" ? "selected_theme_24fire" : "selectedSkrimeTheme";
+  }
 
   async function loadState() {
     const data = await chrome.storage.local.get([
       "selectedSkrimeTheme",
+      "selected_theme_24fire",
       "skrime_remote_themes",
-      "skrime_last_sync",
-      "skrime_sync_status"
+      "skrime_last_sync"
     ]);
 
-    const remote = data.skrime_remote_themes || {};
-    allThemes = Object.assign({}, DEFAULT_THEMES);
+    let remote = data.skrime_remote_themes || {};
 
-    // Merge remote themes
-    for (const [id, t] of Object.entries(remote)) {
-      allThemes[id] = {
-        name: t.name || id,
-        accent: (t.preview && t.preview.accent) || "#bb86fc",
-        isRemote: true
-      };
+    // Wenn noch gar keine Themes im Cache sind: automatisch einmal GitHub prüfen
+    if (Object.keys(remote).length === 0) {
+      themeSelect.innerHTML = "<option>Lade Themes von GitHub...</option>";
+      chrome.runtime.sendMessage({ action: "checkForThemeUpdates" }, (res) => {
+        if (res && res.success) {
+          loadState();
+        }
+      });
+      return;
     }
 
-    const currentThemeId = data.selectedSkrimeTheme || "default";
+    allThemes = remote;
+
     const totalCount = Object.keys(allThemes).length;
     themeCountBadge.textContent = `${totalCount} Themes`;
     lastSyncTimeEl.textContent = formatRelativeTime(data.skrime_last_sync);
 
-    // Update active card
-    const active = allThemes[currentThemeId] || { name: currentThemeId, accent: "#6c757d" };
-    activeNameEl.textContent = active.name;
-    colorDotEl.style.backgroundColor = active.accent;
+    renderSiteThemes();
+  }
 
-    // Populate dropdown
-    themeSelect.innerHTML = "";
+  async function renderSiteThemes() {
+    const storageKey = getStorageKeyForSite(currentSite);
+    const data = await chrome.storage.local.get([storageKey]);
+    const currentThemeId = data[storageKey] || (currentSite === "24fire.de" ? "default-24fire" : "default");
+
+    siteLabel.textContent = `Aktives Theme (${currentSite}):`;
+
+    // Themes nach ausgewählter Webseite filtern
+    const siteThemes = {};
     for (const [id, t] of Object.entries(allThemes)) {
+      const themeSite = t.site || "skrime.eu";
+      if (themeSite === currentSite) {
+        siteThemes[id] = t;
+      }
+    }
+
+    // Aktive Theme-Vorschau
+    const active = siteThemes[currentThemeId] || allThemes[currentThemeId] || { name: "Standard", preview: { accent: "#6c757d" } };
+    activeNameEl.textContent = active.name || currentThemeId;
+    colorDotEl.style.backgroundColor = (active.preview && active.preview.accent) || "#6c757d";
+
+    // Dropdown füllen
+    themeSelect.innerHTML = "";
+    const siteThemeIds = Object.keys(siteThemes);
+
+    if (siteThemeIds.length === 0) {
+      const opt = document.createElement("option");
+      opt.textContent = `Keine Themes für ${currentSite} gefunden`;
+      themeSelect.appendChild(opt);
+      return;
+    }
+
+    for (const [id, t] of Object.entries(siteThemes)) {
       const opt = document.createElement("option");
       opt.value = id;
-      opt.textContent = t.isRemote ? `${t.name} (GitHub)` : t.name;
+      opt.textContent = t.name;
       if (id === currentThemeId) opt.selected = true;
       themeSelect.appendChild(opt);
     }
   }
 
-  // Theme Wechseln
+  // Webseite im Dropdown gewechselt
+  siteSelect.addEventListener("change", (e) => {
+    currentSite = e.target.value;
+    renderSiteThemes();
+  });
+
+  // Theme wechseln
   themeSelect.addEventListener("change", async (e) => {
     const newThemeId = e.target.value;
-    await chrome.storage.local.set({ selectedSkrimeTheme: newThemeId });
-    const theme = allThemes[newThemeId] || { name: newThemeId, accent: "#6c757d" };
-    activeNameEl.textContent = theme.name;
-    colorDotEl.style.backgroundColor = theme.accent;
+    if (!newThemeId) return;
 
-    // Versuche aktuelle Skrime-Tabs zu reloaden
-    const tabs = await chrome.tabs.query({ url: ["*://*.skrime.eu/*", "*://skrime.eu/*"] });
+    const storageKey = getStorageKeyForSite(currentSite);
+    await chrome.storage.local.set({ [storageKey]: newThemeId });
+
+    const theme = allThemes[newThemeId] || { name: newThemeId, preview: { accent: "#6c757d" } };
+    activeNameEl.textContent = theme.name;
+    colorDotEl.style.backgroundColor = (theme.preview && theme.preview.accent) || "#6c757d";
+
+    // Relevante Tabs neu laden
+    const urlPattern = currentSite === "24fire.de" ? "*://*.24fire.de/*" : "*://*.skrime.eu/*";
+    const tabs = await chrome.tabs.query({ url: [urlPattern] });
     for (const tab of tabs) {
       chrome.tabs.reload(tab.id);
     }
   });
 
-  // Auf Updates prüfen Button
+  // Auf Updates prüfen
   btnCheckUpdates.addEventListener("click", () => {
     btnCheckUpdates.disabled = true;
     updateSpinner.classList.add("spin");

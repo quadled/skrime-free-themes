@@ -1,0 +1,102 @@
+/* Skrime Theme: matrix */
+
+body.ext-theme-matrix :is(body, p, h1, h2, h3, h4, h5, h6, a, span, small, label, td, th, li, input, button, textarea, select, .btn) {
+    font-family: "Cascadia Mono", "Fira Code", Consolas, "Courier New", monospace !important;
+}
+
+body.ext-theme-matrix h1, body.ext-theme-matrix h2, body.ext-theme-matrix h3,
+body.ext-theme-matrix h4, body.ext-theme-matrix h5, body.ext-theme-matrix h6,
+body.ext-theme-active.ext-theme-matrix a {
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+
+body.ext-theme-active.ext-theme-matrix .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-matrix .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-matrix .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-matrix .dropdown-menu,
+body.ext-theme-active.ext-theme-matrix .modal-content {
+    background-color: rgba(2, 14, 6, 0.8) !important;
+    border: 1px solid #0f5a1f !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 12px rgba(0, 255, 65, 0.12), inset 0 0 24px rgba(0, 255, 65, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+body.ext-theme-active.ext-theme-matrix .card:not([style*="background-image"]):hover {
+    border-color: #00ff41 !important;
+    box-shadow: 0 0 20px var(--ext-glow), inset 0 0 24px rgba(0, 255, 65, 0.08);
+}
+
+body.ext-theme-active.ext-theme-matrix .sidebar-wrapper {
+    background-color: #000000 !important;
+    border-right: 1px solid #0f5a1f !important;
+}
+body.ext-theme-active.ext-theme-matrix .header-bar,
+body.ext-theme-active.ext-theme-matrix .top-header {
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    border-bottom: 1px solid #0f5a1f !important;
+}
+body.ext-theme-active.ext-theme-matrix .sidebar-menu li.active > a {
+    background: rgba(0, 255, 65, 0.1) !important;
+    box-shadow: inset 3px 0 0 #00ff41;
+    text-shadow: 0 0 8px #00ff41;
+}
+
+/* Buttons: Umriss, beim Hover gefüllt (wie ein Terminal-Prompt) */
+body.ext-theme-active.ext-theme-matrix .btn-primary,
+body.ext-theme-active.ext-theme-matrix .btn-success,
+body.ext-theme-active.ext-theme-matrix .btn-info {
+    background-color: transparent !important;
+    border: 1px solid #00ff41 !important;
+    color: #00ff41 !important;
+    border-radius: 2px !important;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.25), inset 0 0 10px rgba(0, 255, 65, 0.1);
+    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+body.ext-theme-active.ext-theme-matrix .btn-primary:hover,
+body.ext-theme-active.ext-theme-matrix .btn-success:hover,
+body.ext-theme-active.ext-theme-matrix .btn-info:hover {
+    background-color: #00ff41 !important;
+    color: #001a07 !important;
+    box-shadow: 0 0 22px rgba(0, 255, 65, 0.6);
+}
+body.ext-theme-active.ext-theme-matrix .btn-primary i[class*="fa-"],
+body.ext-theme-active.ext-theme-matrix .btn-success i[class*="fa-"],
+body.ext-theme-active.ext-theme-matrix .btn-info i[class*="fa-"] {
+    color: inherit !important;
+    --fa-primary-color: currentColor !important;
+    --fa-secondary-color: currentColor !important;
+}
+
+body.ext-theme-active.ext-theme-matrix .nav-pills .nav-link { border-radius: 2px !important; }
+body.ext-theme-active.ext-theme-matrix .nav-pills .nav-link.active { box-shadow: 0 0 14px var(--ext-glow); }
+
+body.ext-theme-active.ext-theme-matrix i[class*="fa-"]:not(.btn i) {
+    filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.6));
+}
+
+/* CRT: feine Scanlines + dunkle Ränder */
+body.ext-theme-matrix::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background:
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0, rgba(0, 0, 0, 0.16) 1px, transparent 1px, transparent 3px),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+}
+
+#ext-matrix-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.3;
+}
+
+body.ext-theme-matrix ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-matrix ::-webkit-scrollbar-track { background: #000; }
+body.ext-theme-matrix ::-webkit-scrollbar-thumb { background: #0f5a1f; border: 1px solid #00ff41; }
+body.ext-theme-matrix ::selection { background: #00ff41; color: #001a07; }

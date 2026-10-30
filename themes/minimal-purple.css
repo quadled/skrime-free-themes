@@ -1,46 +1,18 @@
-/* =====================================================================
-   SKRIME THEME: Minimal Purple
-   Erstellt von: QuadLed
-   ===================================================================== */
+/* Skrime Theme: minimal-purple */
 
-/* Hintergrund und Textfarbe global ändern */
 body.ext-theme-minimal-purple,
 body.ext-theme-minimal-purple main,
 body.ext-theme-minimal-purple .page-content {
     background-color: #121212 !important;
     color: #e0e0e0 !important;
 }
-
-/* Links anpassen */
-body.ext-theme-minimal-purple a {
-    color: #bb86fc !important;
-}
-
-/* Container, Header und Panels hervorheben */
-body.ext-theme-minimal-purple header, 
-body.ext-theme-minimal-purple footer, 
-body.ext-theme-minimal-purple .card:not([style*="background-image"]), 
-body.ext-theme-minimal-purple .panel, 
-body.ext-theme-minimal-purple nav,
-body.ext-theme-minimal-purple .sidebar-wrapper,
-body.ext-theme-minimal-purple .modal-content {
+body.ext-theme-minimal-purple a { color: #bb86fc !important; }
+body.ext-theme-minimal-purple header, body.ext-theme-minimal-purple footer, body.ext-theme-minimal-purple .card:not([style*="background-image"]), body.ext-theme-minimal-purple .panel, body.ext-theme-minimal-purple nav {
     background-color: #1e1e1e !important;
-    border: 1px solid #333333 !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid #333 !important;
 }
-
-/* Buttons einfärben */
-body.ext-theme-minimal-purple button.btn-primary, 
-body.ext-theme-minimal-purple .btn-primary {
+body.ext-theme-minimal-purple button.btn-primary, body.ext-theme-minimal-purple .btn-primary {
     background-color: #3700b3 !important;
     border-color: #bb86fc !important;
-    color: #ffffff !important;
-    transition: all 0.2s ease;
-}
-
-body.ext-theme-minimal-purple button.btn-primary:hover, 
-body.ext-theme-minimal-purple .btn-primary:hover {
-    background-color: #bb86fc !important;
-    color: #121212 !important;
-    box-shadow: 0 0 15px rgba(187, 134, 252, 0.5) !important;
+    color: white !important;
 }

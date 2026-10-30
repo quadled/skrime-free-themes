@@ -1,0 +1,50 @@
+/* =====================================================================
+   CUSTOM THEME: 24Fire Dark Red
+   Webseite: 24fire.de
+   Erstellt von: QuadLed
+   ===================================================================== */
+
+body.ext-theme-24fire-dark,
+body.ext-theme-24fire-dark #main,
+body.ext-theme-24fire-dark .wrapper,
+body.ext-theme-24fire-dark .content-wrapper,
+body.ext-theme-24fire-dark .main-sidebar {
+    background-color: #121418 !important;
+    color: #e6ebf2 !important;
+}
+
+/* Header & Navigation */
+body.ext-theme-active.ext-theme-24fire-dark .navbar,
+body.ext-theme-active.ext-theme-24fire-dark .main-header,
+body.ext-theme-active.ext-theme-24fire-dark header,
+body.ext-theme-active.ext-theme-24fire-dark nav {
+    background-color: #191d24 !important;
+    border-bottom: 2px solid #e74c3c !important;
+}
+
+/* Karten, Boxen, Tabellen & Panels */
+body.ext-theme-active.ext-theme-24fire-dark .card,
+body.ext-theme-active.ext-theme-24fire-dark .box,
+body.ext-theme-active.ext-theme-24fire-dark .panel,
+body.ext-theme-active.ext-theme-24fire-dark .table,
+body.ext-theme-active.ext-theme-24fire-dark .modal-content,
+body.ext-theme-active.ext-theme-24fire-dark .dropdown-menu {
+    background-color: #1a1e26 !important;
+    border: 1px solid #2d3442 !important;
+    color: #e6ebf2 !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Einsatz- und Akzent-Buttons */
+body.ext-theme-active.ext-theme-24fire-dark .btn-primary,
+body.ext-theme-active.ext-theme-24fire-dark .btn-danger,
+body.ext-theme-active.ext-theme-24fire-dark button.btn-fire {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+    border-color: #e74c3c !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 14px rgba(231, 76, 60, 0.45) !important;
+}
+
+body.ext-theme-active.ext-theme-24fire-dark a {
+    color: #ff6b6b !important;
+}

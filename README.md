@@ -1,25 +1,27 @@
-# 🎨 Skrime Free Themes & Browser Addon
+# 🎨 Custom Themes – Browser Addon & GitHub Themes Hub
 
-Ein modernes Browser-Addon für **[Skrime.eu](https://skrime.eu)** mit integriertem **automatischem GitHub-Updater**.
+Ein modernes Browser-Addon für **[Skrime.eu](https://skrime.eu)**, **[24Fire.de](https://24fire.de)** und weitere Webseiten mit integriertem **automatischem GitHub-Updater**.
 
-Alle Themes aus diesem Repository (`quadled/skrime-free-themes`) werden automatisch an alle Benutzer des Addons verteilt. Sobald du ein neues Theme auf GitHub veröffentlichst oder ein bestehendes anpasst, haben es alle Nutzer sofort verfügbar!
+Alle Themes werden **nicht im Addon fest einprogrammiert**, sondern dynamisch aus diesem GitHub-Repository (`quadled/skrime-free-themes`) geladen. Sobald du hier ein neues Theme veröffentlichst, erhalten es alle Addon-Nutzer automatisch!
 
 ---
 
 ## 🚀 Features
 
-- 🔄 **Automatischer GitHub-Updater:**
-  - Gleicht Themes im Hintergrund alle 30 Minuten mit dem GitHub-Repository ab.
-  - Prüft beim Öffnen von Skrime.eu automatisch auf Updates.
-  - Manueller *"Auf Updates prüfen"*-Button direkt im Theme-Modal auf Skrime und im Popup.
-- 🎨 **Community-Themes:**
-  - Jedes Theme kann eigene Farben (CSS-Variablen), eigene CSS-Regeln (`.css`-Dateien) und animierte Canvas-Effekte (z. B. Schneefall, Matrix-Regen) besitzen.
-- ⚡ **Zero-Flash Theme Injection:**
-  - Lädt Themes direkt beim Seitenaufbau ohne weißes Aufblitzen.
-- 🛡️ **Offline & Fallback-Schutz:**
-  - Eingebaute Standard-Themes (Dracula, Matrix, Cyberpunk, Winter, Minimal Purple etc.) funktionieren immer, auch wenn GitHub offline ist.
-- 📱 **Browser Action Popup:**
-  - Schneller Theme-Wechsler und Update-Status direkt in der Browser-Symbolleiste.
+- 🌐 **Multi-Site Support:**
+  - **Skrime.eu:** Dracula, Matrix, Cyberpunk, Winter, Silvester, Halloween, Minimal Purple, Neon Sunset, Kartoffel, April April.
+  - **24Fire.de:** 24Fire Dark Red (spezieller Dark Mode für Einsatzleitzentrale & Sidebar).
+  - Erkennt automatisch, auf welcher Seite du bist, und zeigt nur die passenden Themes an!
+- 🔄 **Dynamischer GitHub-Updater:**
+  - Keine Themes im Addon gebündelt – 100 % Cloud-Synchronisation über GitHub.
+  - Aktualisiert Themes im Hintergrund alle 30 Minuten.
+  - Manueller *"Auf Updates prüfen"*-Button direkt im Theme-Modal und im Toolbar-Popup.
+- 🎨 **Eigene CSS-Dateien & Effekte:**
+  - Jedes Theme besitzt eine eigene Datei in `themes/*.css` und eigene Farbvariablen in `themes.json`.
+- ⚡ **Zero-Flash Injektion:**
+  - Themes werden direkt beim Laden der Seite angewendet, ohne dass die Standardfarben kurz aufblitzen.
+- 📱 **Toolbar Popup:**
+  - Schneller Wechsel zwischen Webseiten (`skrime.eu` & `24fire.de`), Theme-Auswahl und Update-Status.
 
 ---
 
@@ -27,100 +29,84 @@ Alle Themes aus diesem Repository (`quadled/skrime-free-themes`) werden automati
 
 ### Google Chrome / Microsoft Edge / Brave / Opera
 
-1. Lade diesen Ordner herunter oder klone das Repository.
-2. Öffne in deinem Browser die Erweiterungs-Verwaltung:
+1. Öffne in deinem Browser:
    - **Chrome:** `chrome://extensions`
    - **Edge:** `edge://extensions`
    - **Brave:** `brave://extensions`
-3. Aktiviere oben rechts den **„Entwicklermodus“** (Developer Mode).
-4. Klicke auf **„Entpackte Erweiterung laden“** (Load unpacked).
-5. Wähle diesen Ordner (`skrime.themes`) aus.
-6. Fertig! Öffne jetzt [Skrime.eu](https://skrime.eu) oder klicke auf das Addon-Icon in deiner Toolbar.
+2. Aktiviere oben rechts den **„Entwicklermodus“** (Developer Mode).
+3. Klicke auf **„Entpackte Erweiterung laden“** (Load unpacked).
+4. Wähle diesen Ordner (`skrime.themes`) aus.
+5. Öffne [Skrime.eu](https://skrime.eu) oder [24Fire.de](https://24fire.de)!
 
 ---
 
-## 🛠️ Wie füge ich ein neues Theme hinzu? (Für Entwickler & Ersteller)
+## 🛠️ Wie füge ich ein neues Theme hinzu?
 
-Wenn du ein neues Theme erstellst, damit **alle Nutzer es automatisch bekommen**, sind nur **zwei Schritte** nötig:
+Themes werden einfach auf GitHub gepusht – das Addon verteilt sie automatisch an alle Nutzer!
 
-### 1. CSS-Datei anlegen (optional, falls Spezial-CSS nötig ist)
-Erstelle eine neue CSS-Datei im Ordner `themes/`, z. B. `themes/emerald.css`:
+### 1. Neue CSS-Datei in `themes/` anlegen
+Beispiel: `themes/24fire-blue.css` oder `themes/skrime-emerald.css`:
 ```css
-/* Spezifische Styles für dein Theme */
-body.ext-theme-emerald .card {
-    border-color: #00e676 !important;
-    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3) !important;
+body.ext-theme-24fire-blue .navbar {
+    background-color: #1e3a8a !important;
 }
 ```
 
-### 2. Theme in `themes.json` eintragen
-Öffne die Datei `themes.json` und füge dein Theme unter `"themes"` hinzu:
+### 2. In `themes.json` eintragen
+Öffne `themes.json` und füge dein Theme hinzu. Gib mit `"site"` an, für welche Webseite das Theme gedacht ist (`"skrime.eu"` oder `"24fire.de"`):
 ```json
-"emerald": {
-  "name": "Emerald Theme",
-  "author": "DeinName",
-  "icon": "fa-gem",
-  "effect": null,
-  "vars": "--ext-bg-main: #06140d; --ext-bg-card: #0c2419; --ext-border: #144d32; --ext-text: #e0f2f1; --ext-text-muted: #80cbc4; --ext-accent: #00e676; --ext-accent-text: #06140d; --ext-accent2: #00b0ff; --ext-glow: rgba(0, 230, 118, 0.4);",
+"24fire-blue": {
+  "name": "24Fire Blue Light",
+  "author": "QuadLed",
+  "site": "24fire.de",
+  "icon": "fa-truck-medical",
+  "vars": "--ext-bg-main: #0f172a; --ext-accent: #3b82f6;",
   "preview": {
-    "bg1": "#0c2419",
-    "bg2": "#06140d",
-    "accent": "#00e676",
-    "accent2": "#00b0ff",
-    "text": "#e0f2f1"
+    "bg1": "#1e293b",
+    "bg2": "#0f172a",
+    "accent": "#3b82f6",
+    "accent2": "#60a5fa",
+    "text": "#f8fafc"
   },
-  "cssFile": "themes/emerald.css"
+  "cssFile": "themes/24fire-blue.css"
 }
 ```
 
 ### 3. Auf GitHub pushen
 ```bash
 git add .
-git commit -m "Add Emerald Theme"
+git commit -m "Neues Theme fuer 24fire hinzugefuegt"
 git push
 ```
-
-**Das war's!** 
-Jeder Nutzer, der das Addon installiert hat, erhält beim nächsten Öffnen von Skrime.eu oder beim Klick auf *"Auf Updates prüfen"* automatisch das neue Theme!
+Sobald der Commit auf GitHub ist, haben alle Nutzer beim nächsten Start oder beim Klick auf „Auf Updates prüfen“ das neue Theme!
 
 ---
 
-## 📂 Projektstruktur
+## 📂 Repository-Struktur
 
 ```
 skrime.themes/
-├── manifest.json            # Manifest V3 Konfiguration
-├── background.js            # Background Service Worker (Automatischer GitHub-Updater)
-├── content.js               # Content Script für Skrime.eu (Theme-Injektion & Modal-UI)
-├── popup.html / .css / .js  # Browser-Toolbar Popup (Schnellwechsler & Updater)
-├── themes.json              # Master-Theme-Verzeichnis für GitHub
-├── themes/                  # Modulare CSS-Dateien der Themes
-│   ├── minimal-purple.css   # Minimal Purple (Original theme.css)
-│   └── neon-sunset.css      # Neon Sunset Theme
-├── icons/                   # Addon-Icons (16x16, 48x48, 128x128)
-└── README.md                # Dokumentation
+├── manifest.json            # Manifest V3 (Custom Themes)
+├── background.js            # Background Updater (GitHub Raw Synchronisation)
+├── content.js               # Multi-Site Theme Engine (Skrime & 24Fire)
+├── popup.html / .css / .js  # Browser-Toolbar Popup
+├── themes.json              # Master-Theme-Liste auf GitHub (mit "site"-Zuordnung)
+├── themes/                  # Einzelne CSS-Dateien pro Theme
+│   ├── 24fire-dark.css      # Theme für 24fire.de
+│   ├── minimal-purple.css   # Original theme.css für skrime.eu
+│   ├── dracula.css          # Dracula für skrime.eu
+│   ├── matrix.css           # Matrix für skrime.eu
+│   └── ...                  # Cyberpunk, Winter, Halloween, Silvester, etc.
+└── icons/                   # Addon-Icons
 ```
 
 ---
 
-## 🌐 Erstmaliges Hochladen auf GitHub
-
-Falls das Repository `https://github.com/quadled/skrime-free-themes` noch leer ist:
+## 🌐 Auf GitHub hochladen
 
 ```bash
 cd c:\Users\richt\Desktop\skrime.themes
-git init
-git remote add origin https://github.com/quadled/skrime-free-themes.git
-git branch -M main
 git add .
-git commit -m "Initial commit: Skrime Free Themes mit Auto-Updater"
+git commit -m "Custom Themes: Multi-Site fuer skrime.eu und 24fire.de"
 git push -u origin main
 ```
-
----
-
-## 💡 Lizenz & Credits
-
-Erstellt mit ❤️ für die **Skrime-Community** von **QuadLed**.
-Website: [Skrime.eu](https://skrime.eu)
-Repository: [quadled/skrime-free-themes](https://github.com/quadled/skrime-free-themes)

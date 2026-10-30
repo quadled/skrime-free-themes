@@ -5,7 +5,7 @@
 }
 
 body {
-  width: 320px;
+  width: 330px;
   background-color: #12141a;
   color: #e4e8f1;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -17,7 +17,7 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 13px;
 }
 
 .popup-header {
@@ -114,6 +114,12 @@ body {
 
 .theme-dropdown:focus {
   border-color: #bb86fc;
+}
+
+.site-select {
+  font-weight: 600;
+  background: #1f2533;
+  border-color: #3d465e;
 }
 
 .updater-box {
@@ -218,14 +224,25 @@ body {
 .popup-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-top: 1px solid #232733;
   padding-top: 10px;
+}
+
+.site-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.separator {
+  color: #555d70;
 }
 
 .footer-link {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   color: #8a93a5;
   text-decoration: none;
   font-size: 11px;
@@ -233,5 +250,9 @@ body {
 }
 
 .footer-link:hover {
+  color: #bb86fc;
+}
+
+.gh-link {
   color: #bb86fc;
 }

@@ -1,0 +1,129 @@
+/* Skrime Theme: halloween */
+
+body.ext-theme-halloween,
+body.ext-theme-halloween main,
+body.ext-theme-halloween .page-content {
+    background-image:
+        radial-gradient(circle 240px at 88% 12%, rgba(255, 233, 210, 0.10), transparent 70%),
+        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(255, 122, 26, 0.18), transparent 70%),
+        radial-gradient(ellipse 60% 45% at 0% 100%, rgba(155, 93, 229, 0.16), transparent 70%),
+        linear-gradient(180deg, #140c1c 0%, #0d0a12 65%) !important;
+    background-attachment: fixed !important;
+}
+
+body.ext-theme-active.ext-theme-halloween .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-halloween .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-halloween .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-halloween .dropdown-menu,
+body.ext-theme-active.ext-theme-halloween .modal-content {
+    background-color: rgba(26, 18, 32, 0.9) !important;
+    border: 1px solid rgba(255, 122, 26, 0.28) !important;
+    border-radius: 10px !important;
+    box-shadow: inset 0 2px 0 rgba(255, 122, 26, 0.65), 0 8px 24px rgba(0, 0, 0, 0.45);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+body.ext-theme-active.ext-theme-halloween .card:not([style*="background-image"]):hover {
+    border-color: #ff7a1a !important;
+    box-shadow: inset 0 2px 0 #9b5de5, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+body.ext-theme-active.ext-theme-halloween .sidebar-wrapper {
+    background-color: #09060e !important;
+    border-right: 1px solid rgba(255, 122, 26, 0.3) !important;
+}
+body.ext-theme-active.ext-theme-halloween .header-bar,
+body.ext-theme-active.ext-theme-halloween .top-header {
+    background-color: rgba(9, 6, 14, 0.88) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(155, 93, 229, 0.35) !important;
+}
+body.ext-theme-active.ext-theme-halloween .sidebar-menu li.active > a {
+    background: linear-gradient(90deg, rgba(255, 122, 26, 0.2), transparent) !important;
+    box-shadow: inset 3px 0 0 #ff7a1a;
+}
+
+/* Kürbis-Buttons: Orange mit Lila-Schimmer */
+body.ext-theme-active.ext-theme-halloween .btn-primary,
+body.ext-theme-active.ext-theme-halloween .btn-success,
+body.ext-theme-active.ext-theme-halloween .btn-info,
+body.ext-theme-active.ext-theme-halloween .nav-pills .nav-link.active {
+    background-image: linear-gradient(135deg, #ffb347 0%, #ff7a1a 55%, #d9480f 100%) !important;
+    border: none !important;
+    box-shadow: 0 0 14px var(--ext-glow);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+body.ext-theme-active.ext-theme-halloween .btn-primary:hover,
+body.ext-theme-active.ext-theme-halloween .btn-success:hover,
+body.ext-theme-active.ext-theme-halloween .btn-info:hover {
+    box-shadow: 0 0 26px rgba(255, 122, 26, 0.65), 0 0 40px rgba(155, 93, 229, 0.3);
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+}
+
+/* Überschriften glimmen wie Kerzenlicht */
+body.ext-theme-active.ext-theme-halloween h1,
+body.ext-theme-active.ext-theme-halloween h2 {
+    text-shadow: 0 0 16px rgba(255, 122, 26, 0.5), 0 0 36px rgba(155, 93, 229, 0.25);
+}
+@media (prefers-reduced-motion: no-preference) {
+    body.ext-theme-active.ext-theme-halloween h1,
+    body.ext-theme-active.ext-theme-halloween h2 {
+        animation: extCandle 3.2s ease-in-out infinite;
+    }
+}
+@keyframes extCandle {
+    0%, 100% { text-shadow: 0 0 16px rgba(255, 122, 26, 0.5), 0 0 36px rgba(155, 93, 229, 0.25); }
+    35%      { text-shadow: 0 0 10px rgba(255, 122, 26, 0.35), 0 0 26px rgba(155, 93, 229, 0.2); }
+    60%      { text-shadow: 0 0 22px rgba(255, 122, 26, 0.7), 0 0 44px rgba(155, 93, 229, 0.3); }
+}
+
+body.ext-theme-active.ext-theme-halloween a:hover { color: #7cff4d !important; }
+
+/* Duotone-Icons: Orange + Lila */
+body.ext-theme-active.ext-theme-halloween i[class*="fa-"]:not(.btn i) {
+    --fa-secondary-color: #9b5de5 !important;
+    --fa-secondary-opacity: 0.9 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 122, 26, 0.5));
+}
+
+/* Spinnennetz in der linken oberen Ecke */
+body.ext-theme-halloween::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 9996;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23ffe9d2' stroke-opacity='0.35' stroke-width='1'%3E%3Cpath d='M0 0L220 0M0 0L200 80M0 0L150 150M0 0L80 200M0 0L0 220'/%3E%3Cpath d='M60 0Q50 50 0 60M110 0Q95 95 0 110M160 0Q140 140 0 160M210 0Q185 185 0 210'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+}
+
+/* Nebel am unteren Rand */
+body.ext-theme-halloween::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 170px;
+    pointer-events: none;
+    z-index: 9995;
+    background: linear-gradient(0deg, rgba(155, 93, 229, 0.14), rgba(155, 93, 229, 0.05) 55%, transparent);
+}
+
+#ext-halloween-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+}
+
+body.ext-theme-halloween ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-halloween ::-webkit-scrollbar-track { background: #09060e; }
+body.ext-theme-halloween ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff7a1a, #9b5de5); border-radius: 6px; }
+body.ext-theme-halloween ::selection { background: rgba(255, 122, 26, 0.45); color: #fff; }

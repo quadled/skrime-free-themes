@@ -1,88 +1,34 @@
 // =====================================================================
-// SKRIME THEMES v3
-// Aufbau: 1. Themes  2. Basis-CSS (+ Landingpage)  3. Theme-Spezial-CSS  4. Effekte
-//         5. Theme laden  6. Auswahl-Modal (überall)  7. Sidebar-Button "Themes verwalten"
-//         8. Credit unter dem Logo
+// CUSTOM THEMES v3.2
+// Multi-Site: Unterstützt skrime.eu und 24fire.de
+// Dynamische Themes via GitHub Updater (quadled/skrime-free-themes)
 // =====================================================================
 
-// 1. Built-In Themes (Fallback-Themes, falls offline oder GitHub nicht erreichbar)
-const builtInThemes = {
-    "dracula": {
-        name: "Dracula Theme",
-        icon: "fa-ghost",
-        effect: null,
-        vars: "--ext-bg-main: #1e1f29; --ext-bg-card: #282a36; --ext-border: #44475a; --ext-text: #f8f8f2; --ext-text-muted: #9aa7d6; --ext-accent: #ff79c6; --ext-accent-text: #1e1f29; --ext-accent2: #bd93f9; --ext-accent3: #8be9fd; --ext-glow: rgba(189, 147, 249, 0.4);",
-        preview: { bg1: "#282a36", bg2: "#1e1f29", accent: "#ff79c6", accent2: "#bd93f9", text: "#f8f8f2" }
-    },
-    "matrix": {
-        name: "Matrix Theme",
-        icon: "fa-bug",
-        effect: "matrix",
-        vars: "--ext-bg-main: #010603; --ext-bg-card: #031208; --ext-border: #0f5a1f; --ext-text: #8dffa8; --ext-text-muted: #2fa24f; --ext-accent: #00ff41; --ext-accent-text: #001a07; --ext-glow: rgba(0, 255, 65, 0.35);",
-        preview: { bg1: "#031208", bg2: "#000000", accent: "#00ff41", accent2: "#008f11", text: "#8dffa8" }
-    },
-    "cyberpunk": {
-        name: "Cyberpunk",
-        icon: "fa-bolt",
-        effect: null,
-        vars: "--ext-bg-main: #0a0a14; --ext-bg-card: #12121f; --ext-border: #5b2a86; --ext-text: #e8f9ff; --ext-text-muted: #8ea0ff; --ext-accent: #ff2bd6; --ext-accent-text: #ffffff; --ext-accent2: #00f0ff; --ext-accent3: #fcee0a; --ext-glow: rgba(255, 43, 214, 0.45);",
-        preview: { bg1: "#1a0f2e", bg2: "#0a0a14", accent: "#ff2bd6", accent2: "#00f0ff", text: "#e8f9ff" }
-    },
-    "christmas": {
-        name: "Winter Theme",
-        icon: "fa-snowflake",
-        effect: "snow",
-        vars: "--ext-bg-main: #07111f; --ext-bg-card: #0f2238; --ext-border: #2b5c88; --ext-text: #eaf6ff; --ext-text-muted: #8fb8d6; --ext-accent: #7fd4ff; --ext-accent-text: #05172a; --ext-glow: rgba(127, 212, 255, 0.35);",
-        preview: { bg1: "#16365a", bg2: "#07111f", accent: "#7fd4ff", accent2: "#eaf6ff", text: "#eaf6ff" }
-    },
-    "silvester": {
-        name: "Silvester Theme",
-        icon: "fa-champagne-glasses",
-        effect: "fireworks",
-        vars: "--ext-bg-main: #070a16; --ext-bg-card: #0f1428; --ext-border: #6b5a2a; --ext-text: #fff6dc; --ext-text-muted: #b9ae8c; --ext-accent: #ffd54a; --ext-accent-text: #1a1300; --ext-accent2: #ff4fa3; --ext-accent3: #00e5ff; --ext-glow: rgba(255, 213, 74, 0.4);",
-        preview: { bg1: "#1a1633", bg2: "#070a16", accent: "#ffd54a", accent2: "#ff4fa3", text: "#fff6dc" }
-    },
-    "halloween": {
-        name: "Halloween Theme",
-        icon: "fa-pumpkin",
-        effect: "halloween",
-        vars: "--ext-bg-main: #0d0a12; --ext-bg-card: #1a1220; --ext-border: #5a3414; --ext-text: #ffe9d2; --ext-text-muted: #b79a86; --ext-accent: #ff7a1a; --ext-accent-text: #1a0a00; --ext-accent2: #9b5de5; --ext-accent3: #7cff4d; --ext-glow: rgba(255, 122, 26, 0.4);",
-        preview: { bg1: "#2a1238", bg2: "#0d0a12", accent: "#ff7a1a", accent2: "#9b5de5", text: "#ffe9d2" }
-    },
-    "aprilscherz": {
-        name: "April, April!",
-        icon: "fa-face-grin-wink",
-        effect: "aprilfools",
-        vars: "--ext-bg-main: #39ff14; --ext-bg-card: #ff69b4; --ext-border: #ff8800; --ext-text: #ffff00; --ext-text-muted: #ff00ff; --ext-accent: #00ffff; --ext-accent-text: #ff0000; --ext-accent2: #ff0000; --ext-accent3: #0000ff; --ext-glow: rgba(255, 0, 255, 0.7);",
-        preview: { bg1: "#39ff14", bg2: "#ff69b4", accent: "#00ffff", accent2: "#ff00ff", text: "#ffff00" }
-    },
-    "kartoffel": {
-        name: "Kartoffel Theme",
-        icon: "fa-seedling",
-        effect: "potato",
-        vars: "--ext-bg-main: #1a120a; --ext-bg-card: #2a1d11; --ext-border: #6b4a2b; --ext-text: #fff1d0; --ext-text-muted: #c2a77a; --ext-accent: #d9a441; --ext-accent-text: #2a1a05; --ext-accent2: #8b5a2b; --ext-accent3: #f0d56a; --ext-glow: rgba(217, 164, 65, 0.4);",
-        preview: { bg1: "#3a2814", bg2: "#1a120a", accent: "#d9a441", accent2: "#8b5a2b", text: "#fff1d0" }
-    },
-    "minimal-purple": {
-        name: "Minimal Purple",
-        icon: "fa-palette",
-        effect: null,
-        vars: "--ext-bg-main: #121212; --ext-bg-card: #1e1e1e; --ext-border: #333333; --ext-text: #e0e0e0; --ext-text-muted: #9aa7d6; --ext-accent: #bb86fc; --ext-accent-text: #121212; --ext-accent2: #3700b3; --ext-glow: rgba(187, 134, 252, 0.4);",
-        preview: { bg1: "#1e1e1e", bg2: "#121212", accent: "#bb86fc", accent2: "#3700b3", text: "#e0e0e0" }
-    },
-    "default": {
-        name: "Skrime Standard",
+const CURRENT_HOST = window.location.hostname;
+const IS_24FIRE = CURRENT_HOST.includes('24fire.de');
+const IS_SKRIME = CURRENT_HOST.includes('skrime.eu');
+const CURRENT_SITE = IS_24FIRE ? '24fire.de' : 'skrime.eu';
+const STORAGE_KEY = IS_24FIRE ? 'selected_theme_24fire' : 'selectedSkrimeTheme';
+const DEFAULT_THEME_ID = IS_24FIRE ? 'default-24fire' : 'default';
+
+// 1. Initiales Standard-Theme für die aktuelle Webseite
+const defaultThemes = {
+    [DEFAULT_THEME_ID]: {
+        name: IS_24FIRE ? "24Fire Standard" : "Skrime Standard",
         icon: "fa-xmark",
         effect: null,
+        site: CURRENT_SITE,
         vars: "",
-        preview: { bg1: "#1e1e1e", bg2: "#15171C", accent: "#6c757d", accent2: "#ffffff", text: "#ffffff" }
+        preview: IS_24FIRE 
+            ? { bg1: "#ffffff", bg2: "#f4f6f9", accent: "#d9534f", accent2: "#333333", text: "#333333" }
+            : { bg1: "#1e1e1e", bg2: "#15171C", accent: "#6c757d", accent2: "#ffffff", text: "#ffffff" }
     }
 };
 
-// Dynamische Theme-Sammlung (wird mit GitHub-Themes aus storage erweitert)
-let customThemes = Object.assign({}, builtInThemes);
+let customThemes = Object.assign({}, defaultThemes);
+let themeCSS = {};
 
-// 2. Basis-CSS: wendet die Variablen auf die Skrime-Elemente an
+// 2. Basis-CSS (wird für Skrime.eu angewendet)
 const baseCSS = `
 /* Wir wenden das Design nur an, wenn ein Theme aktiv ist */
 body.ext-theme-active, 
@@ -361,876 +307,8 @@ body.ext-theme-active .footer a { color: var(--ext-text-muted) !important; }
 body.ext-theme-active .footer a:hover { color: var(--ext-accent) !important; }
 `;
 
-// 3. Spezial-CSS pro Theme (kommt NACH baseCSS und überschreibt es gezielt)
-const builtInThemeCSS = {
-
-// ---------------------------------------------------------------------
-// DRACULA: Pink/Lila-Verlauf, dunkle Karten mit Lila-Kante, Cyan-Icons
-// ---------------------------------------------------------------------
-dracula: `
-body.ext-theme-dracula,
-body.ext-theme-dracula main,
-body.ext-theme-dracula .page-content {
-    background-image:
-        radial-gradient(ellipse 60% 40% at 0% 0%, rgba(189, 147, 249, 0.16), transparent 70%),
-        radial-gradient(ellipse 50% 40% at 100% 100%, rgba(255, 121, 198, 0.12), transparent 70%) !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-dracula .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-dracula .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-dracula .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-dracula .dropdown-menu,
-body.ext-theme-active.ext-theme-dracula .modal-content {
-    border: 1px solid #44475a !important;
-    box-shadow: inset 0 2px 0 rgba(189, 147, 249, 0.55), 0 6px 22px rgba(0, 0, 0, 0.35);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-dracula .card:not([style*="background-image"]):hover {
-    border-color: #bd93f9 !important;
-    box-shadow: inset 0 2px 0 #ff79c6, 0 0 20px var(--ext-glow), 0 6px 22px rgba(0, 0, 0, 0.35);
-}
-
-body.ext-theme-active.ext-theme-dracula .sidebar-wrapper {
-    background-color: #191a21 !important;
-    border-right: 1px solid #44475a !important;
-}
-body.ext-theme-active.ext-theme-dracula .header-bar,
-body.ext-theme-active.ext-theme-dracula .top-header {
-    background-color: rgba(25, 26, 33, 0.9) !important;
-    border-bottom: 1px solid #44475a !important;
-}
-body.ext-theme-active.ext-theme-dracula .sidebar-menu li.active > a {
-    background: linear-gradient(90deg, rgba(255, 121, 198, 0.18), transparent) !important;
-    box-shadow: inset 3px 0 0 #ff79c6;
-}
-
-body.ext-theme-active.ext-theme-dracula .btn-primary,
-body.ext-theme-active.ext-theme-dracula .btn-success,
-body.ext-theme-active.ext-theme-dracula .btn-info,
-body.ext-theme-active.ext-theme-dracula .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #ff79c6 0%, #bd93f9 100%) !important;
-    border: none !important;
-    transition: box-shadow 0.2s ease, filter 0.2s ease;
-}
-body.ext-theme-active.ext-theme-dracula .btn-primary:hover,
-body.ext-theme-active.ext-theme-dracula .btn-success:hover,
-body.ext-theme-active.ext-theme-dracula .btn-info:hover {
-    filter: brightness(1.1);
-    box-shadow: 0 0 18px var(--ext-glow);
-}
-
-body.ext-theme-active.ext-theme-dracula a:hover { color: #8be9fd !important; }
-
-/* Duotone-Icons: Pink + Cyan */
-body.ext-theme-active.ext-theme-dracula i[class*="fa-"]:not(.btn i) {
-    --fa-secondary-color: #8be9fd !important;
-    --fa-secondary-opacity: 0.85 !important;
-}
-
-body.ext-theme-dracula ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-dracula ::-webkit-scrollbar-track { background: #191a21; }
-body.ext-theme-dracula ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff79c6, #bd93f9); border-radius: 6px; }
-body.ext-theme-dracula ::selection { background: rgba(189, 147, 249, 0.45); color: #fff; }
-`,
-
-// ---------------------------------------------------------------------
-// MATRIX: Terminal-Look, Monospace, Neon-Grün, CRT-Scanlines, Code-Regen
-// ---------------------------------------------------------------------
-matrix: `
-body.ext-theme-matrix :is(body, p, h1, h2, h3, h4, h5, h6, a, span, small, label, td, th, li, input, button, textarea, select, .btn) {
-    font-family: "Cascadia Mono", "Fira Code", Consolas, "Courier New", monospace !important;
-}
-
-body.ext-theme-matrix h1, body.ext-theme-matrix h2, body.ext-theme-matrix h3,
-body.ext-theme-matrix h4, body.ext-theme-matrix h5, body.ext-theme-matrix h6,
-body.ext-theme-active.ext-theme-matrix a {
-    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
-}
-
-body.ext-theme-active.ext-theme-matrix .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-matrix .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-matrix .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-matrix .dropdown-menu,
-body.ext-theme-active.ext-theme-matrix .modal-content {
-    background-color: rgba(2, 14, 6, 0.8) !important;
-    border: 1px solid #0f5a1f !important;
-    border-radius: 2px !important;
-    box-shadow: 0 0 12px rgba(0, 255, 65, 0.12), inset 0 0 24px rgba(0, 255, 65, 0.04);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-matrix .card:not([style*="background-image"]):hover {
-    border-color: #00ff41 !important;
-    box-shadow: 0 0 20px var(--ext-glow), inset 0 0 24px rgba(0, 255, 65, 0.08);
-}
-
-body.ext-theme-active.ext-theme-matrix .sidebar-wrapper {
-    background-color: #000000 !important;
-    border-right: 1px solid #0f5a1f !important;
-}
-body.ext-theme-active.ext-theme-matrix .header-bar,
-body.ext-theme-active.ext-theme-matrix .top-header {
-    background-color: rgba(0, 0, 0, 0.9) !important;
-    border-bottom: 1px solid #0f5a1f !important;
-}
-body.ext-theme-active.ext-theme-matrix .sidebar-menu li.active > a {
-    background: rgba(0, 255, 65, 0.1) !important;
-    box-shadow: inset 3px 0 0 #00ff41;
-    text-shadow: 0 0 8px #00ff41;
-}
-
-/* Buttons: Umriss, beim Hover gefüllt (wie ein Terminal-Prompt) */
-body.ext-theme-active.ext-theme-matrix .btn-primary,
-body.ext-theme-active.ext-theme-matrix .btn-success,
-body.ext-theme-active.ext-theme-matrix .btn-info {
-    background-color: transparent !important;
-    border: 1px solid #00ff41 !important;
-    color: #00ff41 !important;
-    border-radius: 2px !important;
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.25), inset 0 0 10px rgba(0, 255, 65, 0.1);
-    transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
-}
-body.ext-theme-active.ext-theme-matrix .btn-primary:hover,
-body.ext-theme-active.ext-theme-matrix .btn-success:hover,
-body.ext-theme-active.ext-theme-matrix .btn-info:hover {
-    background-color: #00ff41 !important;
-    color: #001a07 !important;
-    box-shadow: 0 0 22px rgba(0, 255, 65, 0.6);
-}
-body.ext-theme-active.ext-theme-matrix .btn-primary i[class*="fa-"],
-body.ext-theme-active.ext-theme-matrix .btn-success i[class*="fa-"],
-body.ext-theme-active.ext-theme-matrix .btn-info i[class*="fa-"] {
-    color: inherit !important;
-    --fa-primary-color: currentColor !important;
-    --fa-secondary-color: currentColor !important;
-}
-
-body.ext-theme-active.ext-theme-matrix .nav-pills .nav-link { border-radius: 2px !important; }
-body.ext-theme-active.ext-theme-matrix .nav-pills .nav-link.active { box-shadow: 0 0 14px var(--ext-glow); }
-
-body.ext-theme-active.ext-theme-matrix i[class*="fa-"]:not(.btn i) {
-    filter: drop-shadow(0 0 4px rgba(0, 255, 65, 0.6));
-}
-
-/* CRT: feine Scanlines + dunkle Ränder */
-body.ext-theme-matrix::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    background:
-        repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.16) 0, rgba(0, 0, 0, 0.16) 1px, transparent 1px, transparent 3px),
-        radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
-}
-
-#ext-matrix-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.3;
-}
-
-body.ext-theme-matrix ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-matrix ::-webkit-scrollbar-track { background: #000; }
-body.ext-theme-matrix ::-webkit-scrollbar-thumb { background: #0f5a1f; border: 1px solid #00ff41; }
-body.ext-theme-matrix ::selection { background: #00ff41; color: #001a07; }
-`,
-
-// ---------------------------------------------------------------------
-// CYBERPUNK: Neon-Grid, Magenta + Cyan, abgeschnittene Ecken, Chromatic-Text
-// ---------------------------------------------------------------------
-cyberpunk: `
-body.ext-theme-cyberpunk,
-body.ext-theme-cyberpunk main,
-body.ext-theme-cyberpunk .page-content {
-    background-image:
-        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
-        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 43, 214, 0.2), transparent 70%),
-        radial-gradient(ellipse 70% 40% at 50% 100%, rgba(0, 240, 255, 0.14), transparent 70%) !important;
-    background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100% !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-cyberpunk .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-cyberpunk .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-cyberpunk .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-cyberpunk .dropdown-menu,
-body.ext-theme-active.ext-theme-cyberpunk .modal-content {
-    background-color: rgba(18, 18, 31, 0.92) !important;
-    border: 1px solid rgba(255, 43, 214, 0.35) !important;
-    border-left: 3px solid #00f0ff !important;
-    border-radius: 0 !important;
-    box-shadow: 0 0 18px rgba(255, 43, 214, 0.12);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-cyberpunk .card:not([style*="background-image"]):hover {
-    border-color: #ff2bd6 !important;
-    border-left-color: #00f0ff !important;
-    box-shadow: 0 0 24px var(--ext-glow), 0 0 40px rgba(0, 240, 255, 0.12);
-}
-
-body.ext-theme-active.ext-theme-cyberpunk .sidebar-wrapper {
-    background-color: #07070f !important;
-    border-right: 1px solid rgba(255, 43, 214, 0.45) !important;
-}
-body.ext-theme-active.ext-theme-cyberpunk .header-bar,
-body.ext-theme-active.ext-theme-cyberpunk .top-header {
-    background-color: rgba(7, 7, 15, 0.9) !important;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.4) !important;
-}
-body.ext-theme-active.ext-theme-cyberpunk .sidebar-menu li.active > a {
-    color: #00f0ff !important;
-    background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), transparent) !important;
-    box-shadow: inset 3px 0 0 #00f0ff;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
-}
-
-/* Überschriften: leichter Chromatic-Aberration-Effekt */
-body.ext-theme-active.ext-theme-cyberpunk h1,
-body.ext-theme-active.ext-theme-cyberpunk h2 {
-    text-shadow: 2px 0 rgba(0, 240, 255, 0.65), -2px 0 rgba(255, 43, 214, 0.65);
-    letter-spacing: 0.02em;
-}
-
-body.ext-theme-active.ext-theme-cyberpunk a { color: #00f0ff !important; }
-body.ext-theme-active.ext-theme-cyberpunk a:hover { color: #fcee0a !important; }
-
-/* Buttons und aktive Tabs: abgeschnittene Ecken + Magenta-Verlauf */
-body.ext-theme-active.ext-theme-cyberpunk .btn-primary,
-body.ext-theme-active.ext-theme-cyberpunk .btn-success,
-body.ext-theme-active.ext-theme-cyberpunk .btn-info,
-body.ext-theme-active.ext-theme-cyberpunk .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #ff2bd6 0%, #7b2cff 100%) !important;
-    border: none !important;
-    border-radius: 0 !important;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    letter-spacing: 0.04em;
-    transition: filter 0.15s ease;
-}
-body.ext-theme-active.ext-theme-cyberpunk .btn-primary:hover,
-body.ext-theme-active.ext-theme-cyberpunk .btn-success:hover,
-body.ext-theme-active.ext-theme-cyberpunk .btn-info:hover {
-    filter: brightness(1.2) saturate(1.2);
-}
-body.ext-theme-active.ext-theme-cyberpunk .nav-pills .nav-link { border-radius: 0 !important; }
-
-/* Duotone-Icons: Magenta + Cyan */
-body.ext-theme-active.ext-theme-cyberpunk i[class*="fa-"]:not(.btn i) {
-    --fa-secondary-color: #00f0ff !important;
-    --fa-secondary-opacity: 0.9 !important;
-    filter: drop-shadow(0 0 4px rgba(255, 43, 214, 0.55));
-}
-
-/* Feine Cyan-Scanlines */
-body.ext-theme-cyberpunk::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    background: repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.035) 0, rgba(0, 240, 255, 0.035) 1px, transparent 1px, transparent 4px);
-}
-
-body.ext-theme-cyberpunk ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-cyberpunk ::-webkit-scrollbar-track { background: #07070f; }
-body.ext-theme-cyberpunk ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff2bd6, #00f0ff); }
-body.ext-theme-cyberpunk ::selection { background: #ff2bd6; color: #fff; }
-`,
-
-// ---------------------------------------------------------------------
-// WINTER: Eisblau, Frostglas-Karten, sanfter Schneefall
-// ---------------------------------------------------------------------
-christmas: `
-body.ext-theme-christmas,
-body.ext-theme-christmas main,
-body.ext-theme-christmas .page-content {
-    background-image:
-        radial-gradient(ellipse 80% 45% at 50% -10%, rgba(127, 212, 255, 0.18), transparent 70%),
-        radial-gradient(ellipse 60% 40% at 100% 100%, rgba(80, 140, 220, 0.12), transparent 70%),
-        linear-gradient(180deg, #0a1a2e 0%, #07111f 60%) !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-christmas .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-christmas .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-christmas .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-christmas .dropdown-menu,
-body.ext-theme-active.ext-theme-christmas .modal-content {
-    background-color: rgba(15, 34, 56, 0.62) !important;
-    -webkit-backdrop-filter: blur(10px) saturate(130%);
-    backdrop-filter: blur(10px) saturate(130%);
-    border: 1px solid rgba(127, 212, 255, 0.22) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 8px 24px rgba(0, 0, 0, 0.35);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-christmas .card:not([style*="background-image"]):hover {
-    border-color: rgba(127, 212, 255, 0.55) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 18px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.35);
-}
-
-body.ext-theme-active.ext-theme-christmas .sidebar-wrapper {
-    background-color: rgba(6, 15, 28, 0.88) !important;
-    border-right: 1px solid rgba(127, 212, 255, 0.2) !important;
-}
-body.ext-theme-active.ext-theme-christmas .header-bar,
-body.ext-theme-active.ext-theme-christmas .top-header {
-    background-color: rgba(6, 15, 28, 0.8) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(127, 212, 255, 0.2) !important;
-}
-body.ext-theme-active.ext-theme-christmas .sidebar-menu li.active > a {
-    background: linear-gradient(90deg, rgba(127, 212, 255, 0.16), transparent) !important;
-    box-shadow: inset 3px 0 0 #7fd4ff;
-}
-
-body.ext-theme-active.ext-theme-christmas .btn-primary,
-body.ext-theme-active.ext-theme-christmas .btn-success,
-body.ext-theme-active.ext-theme-christmas .btn-info,
-body.ext-theme-active.ext-theme-christmas .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #b9ecff 0%, #7fd4ff 50%, #4aa8e8 100%) !important;
-    border: none !important;
-    box-shadow: 0 0 14px var(--ext-glow);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-body.ext-theme-active.ext-theme-christmas .btn-primary:hover,
-body.ext-theme-active.ext-theme-christmas .btn-success:hover,
-body.ext-theme-active.ext-theme-christmas .btn-info:hover {
-    box-shadow: 0 0 24px rgba(127, 212, 255, 0.6);
-    transform: translateY(-1px);
-}
-
-body.ext-theme-active.ext-theme-christmas h1,
-body.ext-theme-active.ext-theme-christmas h2 {
-    text-shadow: 0 0 18px rgba(127, 212, 255, 0.3);
-}
-
-body.ext-theme-active.ext-theme-christmas i[class*="fa-"]:not(.btn i) {
-    filter: drop-shadow(0 0 4px rgba(127, 212, 255, 0.45));
-}
-
-body.ext-theme-christmas ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-christmas ::-webkit-scrollbar-track { background: #07111f; }
-body.ext-theme-christmas ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #4aa8e8, #2b5c88); border-radius: 6px; }
-body.ext-theme-christmas ::selection { background: rgba(127, 212, 255, 0.35); color: #fff; }
-
-#ext-snow-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-}
-`,
-
-// ---------------------------------------------------------------------
-// SILVESTER: Mitternachtsblau, Gold-Glanz, Pink/Cyan-Funken, Feuerwerk
-// ---------------------------------------------------------------------
-silvester: `
-body.ext-theme-silvester,
-body.ext-theme-silvester main,
-body.ext-theme-silvester .page-content {
-    background-image:
-        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(255, 213, 74, 0.22), transparent 70%),
-        radial-gradient(ellipse 50% 40% at 0% 0%, rgba(255, 79, 163, 0.14), transparent 70%),
-        radial-gradient(ellipse 50% 40% at 100% 0%, rgba(0, 229, 255, 0.10), transparent 70%),
-        linear-gradient(180deg, #0b0f24 0%, #070a16 70%) !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-silvester .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-silvester .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-silvester .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-silvester .dropdown-menu,
-body.ext-theme-active.ext-theme-silvester .modal-content {
-    background-color: rgba(15, 20, 40, 0.85) !important;
-    border: 1px solid rgba(255, 213, 74, 0.28) !important;
-    box-shadow: inset 0 2px 0 rgba(255, 213, 74, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-silvester .card:not([style*="background-image"]):hover {
-    border-color: #ffd54a !important;
-    box-shadow: inset 0 2px 0 #ff4fa3, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-body.ext-theme-active.ext-theme-silvester .sidebar-wrapper {
-    background-color: #050711 !important;
-    border-right: 1px solid rgba(255, 213, 74, 0.3) !important;
-}
-body.ext-theme-active.ext-theme-silvester .header-bar,
-body.ext-theme-active.ext-theme-silvester .top-header {
-    background-color: rgba(5, 7, 17, 0.88) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 213, 74, 0.3) !important;
-}
-body.ext-theme-active.ext-theme-silvester .sidebar-menu li.active > a {
-    background: linear-gradient(90deg, rgba(255, 213, 74, 0.18), transparent) !important;
-    box-shadow: inset 3px 0 0 #ffd54a;
-}
-
-/* Gold-Glanz-Buttons */
-body.ext-theme-active.ext-theme-silvester .btn-primary,
-body.ext-theme-active.ext-theme-silvester .btn-success,
-body.ext-theme-active.ext-theme-silvester .btn-info,
-body.ext-theme-active.ext-theme-silvester .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #fff1a8 0%, #ffd54a 45%, #ff9f1c 100%) !important;
-    border: none !important;
-    box-shadow: 0 0 14px var(--ext-glow);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
-}
-body.ext-theme-active.ext-theme-silvester .btn-primary:hover,
-body.ext-theme-active.ext-theme-silvester .btn-success:hover,
-body.ext-theme-active.ext-theme-silvester .btn-info:hover {
-    box-shadow: 0 0 26px rgba(255, 213, 74, 0.65), 0 0 40px rgba(255, 79, 163, 0.25);
-    transform: translateY(-1px);
-    filter: brightness(1.05);
-}
-
-/* Überschriften mit goldenem Funkeln */
-body.ext-theme-active.ext-theme-silvester h1,
-body.ext-theme-active.ext-theme-silvester h2 {
-    text-shadow: 0 0 16px rgba(255, 213, 74, 0.45), 0 0 34px rgba(255, 79, 163, 0.2);
-    letter-spacing: 0.02em;
-}
-body.ext-theme-active.ext-theme-silvester a:hover { color: #ff4fa3 !important; }
-
-/* Duotone-Icons: Gold + Pink */
-body.ext-theme-active.ext-theme-silvester i[class*="fa-"]:not(.btn i) {
-    --fa-secondary-color: #ff4fa3 !important;
-    --fa-secondary-opacity: 0.85 !important;
-    filter: drop-shadow(0 0 4px rgba(255, 213, 74, 0.5));
-}
-
-body.ext-theme-silvester ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-silvester ::-webkit-scrollbar-track { background: #050711; }
-body.ext-theme-silvester ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ffd54a, #ff4fa3); border-radius: 6px; }
-body.ext-theme-silvester ::selection { background: rgba(255, 213, 74, 0.4); color: #fff; }
-
-#ext-fireworks-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.9;
-}
-`,
-
-// ---------------------------------------------------------------------
-// HALLOWEEN: Kürbis-Orange, Spuk-Lila, Spinnennetz, Nebel, fliegende Fledermäuse
-// ---------------------------------------------------------------------
-halloween: `
-body.ext-theme-halloween,
-body.ext-theme-halloween main,
-body.ext-theme-halloween .page-content {
-    background-image:
-        radial-gradient(circle 240px at 88% 12%, rgba(255, 233, 210, 0.10), transparent 70%),
-        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(255, 122, 26, 0.18), transparent 70%),
-        radial-gradient(ellipse 60% 45% at 0% 100%, rgba(155, 93, 229, 0.16), transparent 70%),
-        linear-gradient(180deg, #140c1c 0%, #0d0a12 65%) !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-halloween .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-halloween .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-halloween .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-halloween .dropdown-menu,
-body.ext-theme-active.ext-theme-halloween .modal-content {
-    background-color: rgba(26, 18, 32, 0.9) !important;
-    border: 1px solid rgba(255, 122, 26, 0.28) !important;
-    border-radius: 10px !important;
-    box-shadow: inset 0 2px 0 rgba(255, 122, 26, 0.65), 0 8px 24px rgba(0, 0, 0, 0.45);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-body.ext-theme-active.ext-theme-halloween .card:not([style*="background-image"]):hover {
-    border-color: #ff7a1a !important;
-    box-shadow: inset 0 2px 0 #9b5de5, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.45);
-}
-
-body.ext-theme-active.ext-theme-halloween .sidebar-wrapper {
-    background-color: #09060e !important;
-    border-right: 1px solid rgba(255, 122, 26, 0.3) !important;
-}
-body.ext-theme-active.ext-theme-halloween .header-bar,
-body.ext-theme-active.ext-theme-halloween .top-header {
-    background-color: rgba(9, 6, 14, 0.88) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(155, 93, 229, 0.35) !important;
-}
-body.ext-theme-active.ext-theme-halloween .sidebar-menu li.active > a {
-    background: linear-gradient(90deg, rgba(255, 122, 26, 0.2), transparent) !important;
-    box-shadow: inset 3px 0 0 #ff7a1a;
-}
-
-/* Kürbis-Buttons: Orange mit Lila-Schimmer */
-body.ext-theme-active.ext-theme-halloween .btn-primary,
-body.ext-theme-active.ext-theme-halloween .btn-success,
-body.ext-theme-active.ext-theme-halloween .btn-info,
-body.ext-theme-active.ext-theme-halloween .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #ffb347 0%, #ff7a1a 55%, #d9480f 100%) !important;
-    border: none !important;
-    box-shadow: 0 0 14px var(--ext-glow);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
-}
-body.ext-theme-active.ext-theme-halloween .btn-primary:hover,
-body.ext-theme-active.ext-theme-halloween .btn-success:hover,
-body.ext-theme-active.ext-theme-halloween .btn-info:hover {
-    box-shadow: 0 0 26px rgba(255, 122, 26, 0.65), 0 0 40px rgba(155, 93, 229, 0.3);
-    transform: translateY(-1px);
-    filter: brightness(1.06);
-}
-
-/* Überschriften glimmen wie Kerzenlicht */
-body.ext-theme-active.ext-theme-halloween h1,
-body.ext-theme-active.ext-theme-halloween h2 {
-    text-shadow: 0 0 16px rgba(255, 122, 26, 0.5), 0 0 36px rgba(155, 93, 229, 0.25);
-}
-@media (prefers-reduced-motion: no-preference) {
-    body.ext-theme-active.ext-theme-halloween h1,
-    body.ext-theme-active.ext-theme-halloween h2 {
-        animation: extCandle 3.2s ease-in-out infinite;
-    }
-}
-@keyframes extCandle {
-    0%, 100% { text-shadow: 0 0 16px rgba(255, 122, 26, 0.5), 0 0 36px rgba(155, 93, 229, 0.25); }
-    35%      { text-shadow: 0 0 10px rgba(255, 122, 26, 0.35), 0 0 26px rgba(155, 93, 229, 0.2); }
-    60%      { text-shadow: 0 0 22px rgba(255, 122, 26, 0.7), 0 0 44px rgba(155, 93, 229, 0.3); }
-}
-
-body.ext-theme-active.ext-theme-halloween a:hover { color: #7cff4d !important; }
-
-/* Duotone-Icons: Orange + Lila */
-body.ext-theme-active.ext-theme-halloween i[class*="fa-"]:not(.btn i) {
-    --fa-secondary-color: #9b5de5 !important;
-    --fa-secondary-opacity: 0.9 !important;
-    filter: drop-shadow(0 0 4px rgba(255, 122, 26, 0.5));
-}
-
-/* Spinnennetz in der linken oberen Ecke */
-body.ext-theme-halloween::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 220px;
-    height: 220px;
-    pointer-events: none;
-    z-index: 9996;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%23ffe9d2' stroke-opacity='0.35' stroke-width='1'%3E%3Cpath d='M0 0L220 0M0 0L200 80M0 0L150 150M0 0L80 200M0 0L0 220'/%3E%3Cpath d='M60 0Q50 50 0 60M110 0Q95 95 0 110M160 0Q140 140 0 160M210 0Q185 185 0 210'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-}
-
-/* Nebel am unteren Rand */
-body.ext-theme-halloween::after {
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 170px;
-    pointer-events: none;
-    z-index: 9995;
-    background: linear-gradient(0deg, rgba(155, 93, 229, 0.14), rgba(155, 93, 229, 0.05) 55%, transparent);
-}
-
-#ext-halloween-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9997;
-}
-
-body.ext-theme-halloween ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-halloween ::-webkit-scrollbar-track { background: #09060e; }
-body.ext-theme-halloween ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff7a1a, #9b5de5); border-radius: 6px; }
-body.ext-theme-halloween ::selection { background: rgba(255, 122, 26, 0.45); color: #fff; }
-`,
-
-// ---------------------------------------------------------------------
-// APRIL, APRIL!: absichtlich anstrengend. Grelle Farben, Comic Sans, schiefe Karten,
-// wackelnde Buttons, fallende Clowns. Sidebar-Button "Themes verwalten" und das
-// Auswahl-Modal bleiben ganz normal, damit man jederzeit zurück kann.
-// ---------------------------------------------------------------------
-aprilscherz: `
-body.ext-theme-aprilscherz :is(body, p, h1, h2, h3, h4, h5, h6, a, span, small, label, td, th, li, input, button, textarea, select, .btn, .nav-link) {
-    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive !important;
-}
-
-body.ext-theme-aprilscherz,
-body.ext-theme-aprilscherz main,
-body.ext-theme-aprilscherz .page-content {
-    background-image:
-        repeating-linear-gradient(45deg, rgba(255, 0, 255, 0.35) 0 22px, rgba(0, 255, 255, 0.35) 22px 44px),
-        radial-gradient(circle at 20% 20%, rgba(255, 0, 0, 0.4), transparent 50%) !important;
-    background-attachment: fixed !important;
-    cursor: progress;
-}
-
-/* Karten und Listen: leicht schief, dicke Rahmen */
-body.ext-theme-active.ext-theme-aprilscherz .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-aprilscherz .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-aprilscherz .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-aprilscherz .dropdown-menu {
-    border: 4px dashed #0000ff !important;
-    border-radius: 24px !important;
-    box-shadow: 8px 8px 0 #ff0000;
-    transition: transform 0.3s ease;
-}
-body.ext-theme-aprilscherz .row > div:nth-child(odd) > .card { transform: rotate(-1.4deg); }
-body.ext-theme-aprilscherz .row > div:nth-child(even) > .card { transform: rotate(1.8deg); }
-body.ext-theme-aprilscherz .card:hover { transform: rotate(0deg) scale(1.03) !important; }
-
-body.ext-theme-active.ext-theme-aprilscherz .sidebar-wrapper {
-    background-color: #ffa500 !important;
-    border-right: 6px dotted #ff00ff !important;
-}
-body.ext-theme-active.ext-theme-aprilscherz .header-bar,
-body.ext-theme-active.ext-theme-aprilscherz .top-header {
-    background-color: #8a2be2 !important;
-    border-bottom: 6px double #ffff00 !important;
-}
-body.ext-theme-aprilscherz .sidebar-menu li:nth-child(odd):not(#ext-theme-menu-item) { transform: translateX(6px) rotate(-1deg); }
-body.ext-theme-aprilscherz .sidebar-menu li:nth-child(even):not(#ext-theme-menu-item) { transform: translateX(-4px) rotate(1deg); }
-body.ext-theme-active.ext-theme-aprilscherz .sidebar-menu li.active > a {
-    background: repeating-linear-gradient(90deg, #ff0000 0 10px, #ffff00 10px 20px) !important;
-}
-
-/* Überschriften: wellig unterstrichen und leicht gesperrt */
-body.ext-theme-active.ext-theme-aprilscherz h1,
-body.ext-theme-active.ext-theme-aprilscherz h2,
-body.ext-theme-active.ext-theme-aprilscherz h3 {
-    text-decoration: underline wavy #ff0000;
-    text-shadow: 3px 3px 0 #0000ff;
-    letter-spacing: 0.08em;
-}
-body.ext-theme-active.ext-theme-aprilscherz a:hover { color: #ff0000 !important; text-decoration: line-through; }
-
-/* Buttons: bunter Verlauf, rot-blaue Schrift */
-body.ext-theme-active.ext-theme-aprilscherz .btn-primary,
-body.ext-theme-active.ext-theme-aprilscherz .btn-success,
-body.ext-theme-active.ext-theme-aprilscherz .btn-info,
-body.ext-theme-active.ext-theme-aprilscherz .nav-pills .nav-link.active {
-    background-image: linear-gradient(90deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff) !important;
-    border: 3px solid #000 !important;
-    border-radius: 40px !important;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-/* Icons: Rot + Blau */
-body.ext-theme-active.ext-theme-aprilscherz i[class*="fa-"]:not(.btn i) {
-    --fa-primary-color: #ff0000 !important;
-    --fa-secondary-color: #0000ff !important;
-    --fa-secondary-opacity: 1 !important;
-}
-
-/* Bewegung nur, wenn der Browser keine reduzierte Bewegung wünscht */
-@media (prefers-reduced-motion: no-preference) {
-    body.ext-theme-aprilscherz .btn-primary,
-    body.ext-theme-aprilscherz .btn-success,
-    body.ext-theme-aprilscherz .btn-info {
-        animation: extWobble 1.6s ease-in-out infinite;
-    }
-    body.ext-theme-aprilscherz main,
-    body.ext-theme-aprilscherz .page-content {
-        animation: extHue 12s linear infinite;
-    }
-    body.ext-theme-aprilscherz h1,
-    body.ext-theme-aprilscherz h2 {
-        animation: extBlink 1.2s steps(2, start) infinite;
-    }
-}
-@keyframes extWobble {
-    0%, 100% { transform: rotate(-2deg) scale(1); }
-    50%      { transform: rotate(2deg) scale(1.05); }
-}
-@keyframes extHue {
-    from { filter: hue-rotate(0deg); }
-    to   { filter: hue-rotate(360deg); }
-}
-@keyframes extBlink {
-    0%, 70% { opacity: 1; }
-    85%     { opacity: 0.35; }
-}
-
-/* Riesige pinke Scrollbar */
-body.ext-theme-aprilscherz ::-webkit-scrollbar { width: 26px; }
-body.ext-theme-aprilscherz ::-webkit-scrollbar-track { background: repeating-linear-gradient(0deg, #00ffff 0 12px, #ffff00 12px 24px); }
-body.ext-theme-aprilscherz ::-webkit-scrollbar-thumb { background: #ff00ff; border: 4px solid #000; border-radius: 14px; }
-body.ext-theme-aprilscherz ::selection { background: #ff0000; color: #ffff00; }
-
-/* ESCAPE-LUKE: Sidebar-Button und Auswahl-Modal bleiben immer normal und bedienbar */
-body.ext-theme-aprilscherz #ext-theme-menu-item,
-body.ext-theme-aprilscherz #ext-theme-menu-item *,
-body.ext-theme-aprilscherz #extThemeModal,
-body.ext-theme-aprilscherz #extThemeModal * {
-    animation: none !important;
-    transform: none !important;
-    filter: none !important;
-    cursor: pointer;
-    font-family: "Segoe UI", system-ui, sans-serif !important;
-    text-decoration: none !important;
-    text-transform: none !important;
-}
-body.ext-theme-aprilscherz #ext-theme-menu-item { background: #000 !important; border-radius: 8px; }
-body.ext-theme-aprilscherz #ext-theme-menu-item a { color: #ffffff !important; }
-
-#ext-april-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9997;
-}
-
-#ext-april-banner {
-    position: fixed;
-    left: 50%;
-    bottom: 16px;
-    transform: translateX(-50%);
-    z-index: 10000;
-    padding: 10px 18px;
-    border-radius: 999px;
-    background: #000;
-    color: #fff;
-    font: 600 14px "Segoe UI", system-ui, sans-serif;
-    box-shadow: 0 0 0 3px #ff00ff, 0 8px 24px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    user-select: none;
-}
-`,
-
-// ---------------------------------------------------------------------
-// KARTOFFEL: Erdbraun, Schalen-Gold, Kartoffelaugen im Hintergrund, fallende Kartoffeln
-// ---------------------------------------------------------------------
-kartoffel: `
-body.ext-theme-kartoffel,
-body.ext-theme-kartoffel main,
-body.ext-theme-kartoffel .page-content {
-    background-image:
-        radial-gradient(circle at 12px 12px, rgba(217, 164, 65, 0.12) 2px, transparent 3px),
-        radial-gradient(circle at 44px 36px, rgba(139, 90, 43, 0.25) 3px, transparent 4px),
-        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(217, 164, 65, 0.18), transparent 70%),
-        radial-gradient(ellipse 60% 40% at 0% 0%, rgba(139, 90, 43, 0.22), transparent 70%),
-        linear-gradient(180deg, #22160c 0%, #1a120a 70%) !important;
-    background-size: 64px 64px, 64px 64px, 100% 100%, 100% 100%, 100% 100% !important;
-    background-attachment: fixed !important;
-}
-
-body.ext-theme-active.ext-theme-kartoffel .card:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-kartoffel .features:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-kartoffel .list-group-item:not([style*="background-image"]),
-body.ext-theme-active.ext-theme-kartoffel .dropdown-menu,
-body.ext-theme-active.ext-theme-kartoffel .modal-content {
-    background-color: rgba(42, 29, 17, 0.92) !important;
-    border: 1px solid rgba(217, 164, 65, 0.3) !important;
-    border-radius: 18px 22px 16px 24px / 22px 16px 24px 18px !important; /* leicht "knollig" */
-    box-shadow: inset 0 2px 0 rgba(240, 213, 106, 0.4), 0 8px 24px rgba(0, 0, 0, 0.45);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-body.ext-theme-active.ext-theme-kartoffel .card:not([style*="background-image"]):hover {
-    border-color: #d9a441 !important;
-    box-shadow: inset 0 2px 0 #f0d56a, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.45);
-    transform: translateY(-2px);
-}
-
-body.ext-theme-active.ext-theme-kartoffel .sidebar-wrapper {
-    background-color: #120c06 !important;
-    border-right: 1px solid rgba(217, 164, 65, 0.3) !important;
-}
-body.ext-theme-active.ext-theme-kartoffel .header-bar,
-body.ext-theme-active.ext-theme-kartoffel .top-header {
-    background-color: rgba(18, 12, 6, 0.9) !important;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(217, 164, 65, 0.3) !important;
-}
-body.ext-theme-active.ext-theme-kartoffel .sidebar-menu li.active > a {
-    background: linear-gradient(90deg, rgba(217, 164, 65, 0.2), transparent) !important;
-    box-shadow: inset 3px 0 0 #d9a441;
-}
-
-/* Buttons: Pommes-Gold bis Röstbraun */
-body.ext-theme-active.ext-theme-kartoffel .btn-primary,
-body.ext-theme-active.ext-theme-kartoffel .btn-success,
-body.ext-theme-active.ext-theme-kartoffel .btn-info,
-body.ext-theme-active.ext-theme-kartoffel .nav-pills .nav-link.active {
-    background-image: linear-gradient(135deg, #f0d56a 0%, #d9a441 50%, #a8692a 100%) !important;
-    border: none !important;
-    border-radius: 14px !important;
-    box-shadow: 0 0 12px var(--ext-glow);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
-}
-body.ext-theme-active.ext-theme-kartoffel .btn-primary:hover,
-body.ext-theme-active.ext-theme-kartoffel .btn-success:hover,
-body.ext-theme-active.ext-theme-kartoffel .btn-info:hover {
-    box-shadow: 0 0 24px rgba(217, 164, 65, 0.6);
-    transform: translateY(-1px) rotate(-1deg);
-    filter: brightness(1.06);
-}
-
-body.ext-theme-active.ext-theme-kartoffel h1,
-body.ext-theme-active.ext-theme-kartoffel h2 {
-    text-shadow: 0 0 14px rgba(217, 164, 65, 0.35), 2px 2px 0 rgba(107, 74, 43, 0.6);
-}
-body.ext-theme-active.ext-theme-kartoffel a:hover { color: #f0d56a !important; }
-
-/* Duotone-Icons: Gold + Erdbraun */
-body.ext-theme-active.ext-theme-kartoffel i[class*="fa-"]:not(.btn i) {
-    --fa-secondary-color: #a8692a !important;
-    --fa-secondary-opacity: 0.95 !important;
-}
-
-body.ext-theme-kartoffel ::-webkit-scrollbar { width: 10px; }
-body.ext-theme-kartoffel ::-webkit-scrollbar-track { background: #120c06; }
-body.ext-theme-kartoffel ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #d9a441, #8b5a2b); border-radius: 6px; }
-body.ext-theme-kartoffel ::selection { background: rgba(217, 164, 65, 0.45); color: #fff; }
-
-#ext-potato-canvas {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.85;
-}
-`,
-
-// Minimal Purple Spezial-CSS
-"minimal-purple": `
-body.ext-theme-minimal-purple,
-body.ext-theme-minimal-purple main,
-body.ext-theme-minimal-purple .page-content {
-    background-color: #121212 !important;
-    color: #e0e0e0 !important;
-}
-body.ext-theme-minimal-purple a { color: #bb86fc !important; }
-body.ext-theme-minimal-purple header, body.ext-theme-minimal-purple footer, body.ext-theme-minimal-purple .card:not([style*="background-image"]), body.ext-theme-minimal-purple .panel, body.ext-theme-minimal-purple nav {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333 !important;
-}
-body.ext-theme-minimal-purple button.btn-primary, body.ext-theme-minimal-purple .btn-primary {
-    background-color: #3700b3 !important;
-    border-color: #bb86fc !important;
-    color: white !important;
-}
-`
-};
-
-let themeCSS = Object.assign({}, builtInThemeCSS);
+// 3. Spezial-CSS pro Theme
+// Alle Theme-CSS-Dateien werden dynamisch von GitHub (themes/*.css) geladen
 
 // 4. Effekte (Canvas-Animationen). Wer "weniger Bewegung" eingestellt hat, bekommt keine.
 function prefersReducedMotion() {
@@ -1662,14 +740,17 @@ const effects = {
 
 // 5. Theme laden und auf der Seite anwenden (inkl. Remote-Themes von GitHub)
 function applyTheme(activeThemeId, theme) {
-    if (activeThemeId === "default" || !theme) return;
+    if (!activeThemeId || activeThemeId === 'default' || activeThemeId === DEFAULT_THEME_ID || !theme) return;
 
     let existingStyle = document.getElementById('ext-theme-style');
     if (existingStyle) existingStyle.remove();
 
     let style = document.createElement('style');
     style.id = 'ext-theme-style';
-    style.innerHTML = `:root { ${theme.vars || ''} }\n` + baseCSS + "\n" + landingCSS + "\n" + (themeCSS[activeThemeId] || theme.css || "");
+
+    // Basis-CSS nur auf Skrime.eu anwenden
+    let siteBaseCSS = IS_SKRIME ? (baseCSS + "\n" + landingCSS) : "";
+    style.innerHTML = `:root { ${theme.vars || ''} }\n` + siteBaseCSS + "\n" + (themeCSS[activeThemeId] || theme.css || "");
     (document.head || document.documentElement).appendChild(style);
 
     const activateBody = () => {
@@ -1686,21 +767,46 @@ function applyTheme(activeThemeId, theme) {
 }
 
 // Themes aus chrome.storage.local synchronisieren
-chrome.storage.local.get(['selectedSkrimeTheme', 'skrime_remote_themes', 'skrime_last_sync'], function(result) {
-    const remoteThemes = result.skrime_remote_themes || {};
+function loadThemesFromData(remoteThemes, activeThemeId) {
+    customThemes = Object.assign({}, defaultThemes);
+    themeCSS = {};
 
-    // Remote-Themes einbinden
     Object.entries(remoteThemes).forEach(([id, t]) => {
-        customThemes[id] = Object.assign({}, t, { isRemote: true });
-        if (t.css) {
-            themeCSS[id] = t.css;
+        const themeSite = t.site || 'skrime.eu';
+        // Nur Themes für die aktuelle Seite laden!
+        if (themeSite === CURRENT_SITE) {
+            customThemes[id] = Object.assign({}, t, { isRemote: true });
+            if (t.css) {
+                themeCSS[id] = t.css;
+            }
         }
     });
 
-    let activeThemeId = result.selectedSkrimeTheme || "default";
     let theme = customThemes[activeThemeId];
-    if (activeThemeId !== "default" && theme) {
+    if (activeThemeId !== 'default' && activeThemeId !== DEFAULT_THEME_ID && theme) {
         applyTheme(activeThemeId, theme);
+    }
+    renderThemeCards();
+}
+
+chrome.storage.local.get([STORAGE_KEY, 'selectedSkrimeTheme', 'skrime_remote_themes', 'skrime_last_sync'], function(result) {
+    const remoteThemes = result.skrime_remote_themes || {};
+    // Kompatibilität: Auf Skrime 'selectedSkrimeTheme' oder STORAGE_KEY nutzen
+    let activeThemeId = result[STORAGE_KEY] || (IS_SKRIME ? result.selectedSkrimeTheme : null) || DEFAULT_THEME_ID;
+
+    if (Object.keys(remoteThemes).length === 0) {
+        // Noch keine Themes im Cache: sofort vom GitHub-Updater holen
+        chrome.runtime.sendMessage({ action: "checkForThemeUpdates" }, (response) => {
+            if (response && response.success) {
+                chrome.storage.local.get(['skrime_remote_themes'], (res) => {
+                    loadThemesFromData(res.skrime_remote_themes || {}, activeThemeId);
+                });
+            } else {
+                loadThemesFromData({}, activeThemeId);
+            }
+        });
+    } else {
+        loadThemesFromData(remoteThemes, activeThemeId);
     }
 
     // Automatische Hintergrund-Prüfung bei Seitenaufruf (wenn letzter Sync > 30 Min her ist)
@@ -1713,14 +819,10 @@ chrome.storage.local.get(['selectedSkrimeTheme', 'skrime_remote_themes', 'skrime
 // Wenn der Service Worker neue Themes heruntergeladen hat
 chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "themesUpdated") {
-        console.log(`[Skrime Addon] ${message.totalCount} Themes aktualisiert (${message.newThemesCount} neu).`);
-        chrome.storage.local.get(['skrime_remote_themes'], function(res) {
-            const remoteThemes = res.skrime_remote_themes || {};
-            Object.entries(remoteThemes).forEach(([id, t]) => {
-                customThemes[id] = Object.assign({}, t, { isRemote: true });
-                if (t.css) themeCSS[id] = t.css;
-            });
-            renderThemeCards();
+        console.log(`[Custom Themes] ${message.totalCount} Themes aktualisiert (${message.newThemesCount} neu).`);
+        chrome.storage.local.get(['skrime_remote_themes', STORAGE_KEY], function(res) {
+            const activeId = res[STORAGE_KEY] || DEFAULT_THEME_ID;
+            loadThemesFromData(res.skrime_remote_themes || {}, activeId);
         });
     }
 });
@@ -1736,7 +838,7 @@ function ensureThemeModal() {
                 <div class="modal-header border-bottom d-flex align-items-center justify-content-between" style="border-color: #2a2d35 !important; padding: 16px 22px;">
                     <div>
                         <h5 class="modal-title m-0" id="extThemeModalLabel" style="color: white; font-weight: 700; display: flex; align-items: center; gap: 10px;">
-                            <i class="fa-duotone fa-palette" style="color: #bb86fc;"></i> Skrime Themes
+                            <i class="fa-duotone fa-palette" style="color: #bb86fc;"></i> ${IS_24FIRE ? "24Fire" : "Skrime"} Themes
                         </h5>
                         <small style="color: #8b93a1; font-size: 0.78rem;">
                             GitHub Repository: <a href="https://github.com/quadled/skrime-free-themes" target="_blank" style="color: #bb86fc; text-decoration: underline;">quadled/skrime-free-themes</a>
@@ -1826,7 +928,7 @@ function renderThemeCards() {
     if (!grid) return;
 
     chrome.storage.local.get(['selectedSkrimeTheme', 'skrime_last_sync'], function(result) {
-        let currentTheme = result.selectedSkrimeTheme || "default";
+        let currentTheme = result[STORAGE_KEY] || DEFAULT_THEME_ID;
         const selectedShadow = (accent) => `0 0 0 2px #ffffff, 0 0 18px ${accent}`;
 
         // Sync Time Badge im Footer aktualisieren
@@ -1886,7 +988,7 @@ function renderThemeCards() {
                     selectedCard.style.boxShadow = selectedShadow(selectedCard.dataset.accent);
 
                     // Speichern & Neuladen
-                    chrome.storage.local.set({selectedSkrimeTheme: this.value}, function() {
+                    chrome.storage.local.set({[STORAGE_KEY]: this.value}, function() {
                         window.location.reload();
                     });
                 }
@@ -1903,133 +1005,68 @@ if (document.readyState === 'loading') {
 }
 
 // Karte "Extension Design" in den Einstellungen (nur auf /settings)
-if (window.location.pathname.includes('/settings')) {
-    setTimeout(() => {
-        let preferencesRow = document.querySelector('#preferences .row');
-
-        if (preferencesRow && !document.getElementById('ext-theme-settings-card')) {
-            let customCard = document.createElement('div');
-            customCard.id = 'ext-theme-settings-card';
-            customCard.className = 'col-md-4 mt-3';
-            customCard.innerHTML = `
-                <div class="card card-body h-100 d-flex flex-column">
-                    <h5>Extension Design</h5>
-                    <small class="text-muted mb-4">Passe das Erscheinungsbild deines Dashboards mit eigenen Community-Themes an.</small>
-                    <button type="button" class="btn btn-primary w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#extThemeModal">
-                        <i class="fa-duotone fa-palette"></i> Ext Theme ändern
-                    </button>
-                </div>
-            `;
-            preferencesRow.appendChild(customCard);
+// Schwebender Button für 24fire.de
+function insert24FireButton() {
+    if (document.getElementById('ext-24fire-theme-btn')) return;
+    const btn = document.createElement('div');
+    btn.id = 'ext-24fire-theme-btn';
+    btn.innerHTML = `
+        <button type="button" style="position: fixed; bottom: 22px; right: 22px; z-index: 999999; background: #e74c3c; color: #ffffff; border: 2px solid #ffffff; border-radius: 30px; padding: 10px 18px; font-weight: 700; font-size: 13px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); cursor: pointer; display: flex; align-items: center; gap: 8px;">
+            🎨 24Fire Themes
+        </button>
+    `;
+    document.body.appendChild(btn);
+    btn.querySelector('button').addEventListener('click', () => {
+        ensureThemeModal();
+        const modal = document.getElementById('extThemeModal');
+        if (modal) {
+            modal.style.display = 'block';
+            modal.classList.add('show');
+            document.body.classList.add('modal-open');
         }
-    }, 800);
-}
-
-// 7. Sidebar-Button "Themes verwalten" direkt unter "Partner werden"
-// Der Eintrag wird vom "Partner werden"-Punkt kopiert, sieht also exakt wie die anderen Menüpunkte aus.
-function insertThemeMenuItem() {
-    if (document.getElementById('ext-theme-menu-item')) return true;
-
-    const links = document.querySelectorAll('.sidebar-menu a');
-    let anchorLink = null;
-    for (const a of links) {
-        if (a.textContent.trim().toLowerCase().startsWith('partner werden')) {
-            anchorLink = a;
-            break;
-        }
-    }
-    if (!anchorLink) return false;
-
-    const anchorLi = anchorLink.closest('li');
-    if (!anchorLi) return false;
-
-    const clone = anchorLi.cloneNode(true);
-
-    // Untermenüs, aktive Markierung und IDs aus der Kopie entfernen
-    clone.querySelectorAll('ul, .sidebar-submenu, .sidebar-dropdown-menu, .badge').forEach(el => el.remove());
-    clone.classList.remove('active', 'sidebar-dropdown', 'open', 'show');
-    clone.removeAttribute('id');
-    clone.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-    clone.id = 'ext-theme-menu-item';
-
-    const link = clone.querySelector('a');
-    if (!link) return false;
-
-    // Link so umbauen, dass er nur unser Modal öffnet
-    Array.from(link.attributes).forEach(attr => {
-        if (attr.name.startsWith('data-') || attr.name.startsWith('aria-')) link.removeAttribute(attr.name);
     });
-    link.setAttribute('href', '#');
-    link.removeAttribute('target');
-    link.setAttribute('data-bs-toggle', 'modal');
-    link.setAttribute('data-bs-target', '#extThemeModal');
-
-    // Icon austauschen (Stil- und Größenklassen bleiben, nur das Symbol wird ersetzt)
-    const keep = /^fa-(duotone|solid|regular|light|thin|brands|sharp|fw|lg|sm|xs|[0-9]+x)$/;
-    const icon = clone.querySelector('i[class*="fa-"]');
-    if (icon) {
-        const kept = Array.from(icon.classList).filter(c => !c.startsWith('fa-') || keep.test(c));
-        icon.className = kept.join(' ') + ' fa-palette';
-    }
-
-    // Text austauschen
-    const walker = document.createTreeWalker(link, NodeFilter.SHOW_TEXT);
-    let node;
-    while ((node = walker.nextNode())) {
-        if (node.nodeValue.trim().length > 0) {
-            node.nodeValue = node.nodeValue.replace(node.nodeValue.trim(), 'Themes verwalten');
-            break;
-        }
-    }
-
-    anchorLi.insertAdjacentElement('afterend', clone);
-    return true;
 }
 
-// 8. Credit unter dem Logo: "Themes made by QuadLed"
-function insertThemeCredit() {
-    if (document.getElementById('ext-theme-credit')) return true;
-    const brand = document.querySelector('.sidebar-brand');
-    if (!brand) return false;
-
-    if (!document.getElementById('ext-theme-credit-style')) {
-        const creditStyle = document.createElement('style');
-        creditStyle.id = 'ext-theme-credit-style';
-        creditStyle.innerHTML = `
-            #ext-theme-credit {
-                display: block;
-                margin: -6px 0 10px 0;
-                padding: 0 20px;
-                font-size: 0.62rem;
-                line-height: 1;
-                letter-spacing: 0.04em;
-                opacity: 0.55;
-                color: var(--ext-text-muted, #8b93a1);
-                pointer-events: none;
-                user-select: none;
-                white-space: nowrap;
+// 7. Seiten-spezifische UI-Elemente
+if (IS_SKRIME) {
+    if (window.location.pathname.includes('/settings')) {
+        setTimeout(() => {
+            let preferencesRow = document.querySelector('#preferences .row');
+            if (preferencesRow && !document.getElementById('ext-theme-settings-card')) {
+                let customCard = document.createElement('div');
+                customCard.id = 'ext-theme-settings-card';
+                customCard.className = 'col-md-4 mt-3';
+                customCard.innerHTML = `
+                    <div class="card card-body h-100 d-flex flex-column">
+                        <h5>Custom Themes</h5>
+                        <small class="text-muted mb-4">Passe das Erscheinungsbild mit Community-Themes an.</small>
+                        <button type="button" class="btn btn-primary w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#extThemeModal">
+                            <i class="fa-duotone fa-palette"></i> Theme ändern
+                        </button>
+                    </div>
+                `;
+                preferencesRow.appendChild(customCard);
             }
-            #ext-theme-credit b {
-                font-weight: 600;
-                color: var(--ext-accent, #ffffff);
-            }
-        `;
-        document.head.appendChild(creditStyle);
+        }, 800);
     }
 
-    const credit = document.createElement('small');
-    credit.id = 'ext-theme-credit';
-    credit.innerHTML = 'Themes made by <b>QuadLed</b>';
-    brand.insertAdjacentElement('afterend', credit);
-    return true;
+    (function initSidebarAdditions() {
+        let tries = 0;
+        const timer = setInterval(() => {
+            const menuDone = insertThemeMenuItem();
+            const creditDone = insertThemeCredit();
+            if ((menuDone && creditDone) || ++tries > 30) clearInterval(timer);
+        }, 250);
+    })();
+} else if (IS_24FIRE) {
+    (function init24FireAdditions() {
+        let tries = 0;
+        const timer = setInterval(() => {
+            if (document.body) {
+                insert24FireButton();
+                clearInterval(timer);
+            }
+            if (++tries > 30) clearInterval(timer);
+        }, 250);
+    })();
 }
-
-// Sidebar kann etwas später geladen werden, daher kurz mehrfach versuchen
-(function initSidebarAdditions() {
-    let tries = 0;
-    const timer = setInterval(() => {
-        const menuDone = insertThemeMenuItem();
-        const creditDone = insertThemeCredit();
-        if ((menuDone && creditDone) || ++tries > 30) clearInterval(timer);
-    }, 250);
-})();

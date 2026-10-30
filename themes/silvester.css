@@ -1,0 +1,91 @@
+/* Skrime Theme: silvester */
+
+body.ext-theme-silvester,
+body.ext-theme-silvester main,
+body.ext-theme-silvester .page-content {
+    background-image:
+        radial-gradient(ellipse 70% 40% at 50% 110%, rgba(255, 213, 74, 0.22), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 0% 0%, rgba(255, 79, 163, 0.14), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 100% 0%, rgba(0, 229, 255, 0.10), transparent 70%),
+        linear-gradient(180deg, #0b0f24 0%, #070a16 70%) !important;
+    background-attachment: fixed !important;
+}
+
+body.ext-theme-active.ext-theme-silvester .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-silvester .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-silvester .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-silvester .dropdown-menu,
+body.ext-theme-active.ext-theme-silvester .modal-content {
+    background-color: rgba(15, 20, 40, 0.85) !important;
+    border: 1px solid rgba(255, 213, 74, 0.28) !important;
+    box-shadow: inset 0 2px 0 rgba(255, 213, 74, 0.6), 0 8px 24px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+body.ext-theme-active.ext-theme-silvester .card:not([style*="background-image"]):hover {
+    border-color: #ffd54a !important;
+    box-shadow: inset 0 2px 0 #ff4fa3, 0 0 22px var(--ext-glow), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.ext-theme-active.ext-theme-silvester .sidebar-wrapper {
+    background-color: #050711 !important;
+    border-right: 1px solid rgba(255, 213, 74, 0.3) !important;
+}
+body.ext-theme-active.ext-theme-silvester .header-bar,
+body.ext-theme-active.ext-theme-silvester .top-header {
+    background-color: rgba(5, 7, 17, 0.88) !important;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 213, 74, 0.3) !important;
+}
+body.ext-theme-active.ext-theme-silvester .sidebar-menu li.active > a {
+    background: linear-gradient(90deg, rgba(255, 213, 74, 0.18), transparent) !important;
+    box-shadow: inset 3px 0 0 #ffd54a;
+}
+
+/* Gold-Glanz-Buttons */
+body.ext-theme-active.ext-theme-silvester .btn-primary,
+body.ext-theme-active.ext-theme-silvester .btn-success,
+body.ext-theme-active.ext-theme-silvester .btn-info,
+body.ext-theme-active.ext-theme-silvester .nav-pills .nav-link.active {
+    background-image: linear-gradient(135deg, #fff1a8 0%, #ffd54a 45%, #ff9f1c 100%) !important;
+    border: none !important;
+    box-shadow: 0 0 14px var(--ext-glow);
+    transition: box-shadow 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+}
+body.ext-theme-active.ext-theme-silvester .btn-primary:hover,
+body.ext-theme-active.ext-theme-silvester .btn-success:hover,
+body.ext-theme-active.ext-theme-silvester .btn-info:hover {
+    box-shadow: 0 0 26px rgba(255, 213, 74, 0.65), 0 0 40px rgba(255, 79, 163, 0.25);
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+/* Überschriften mit goldenem Funkeln */
+body.ext-theme-active.ext-theme-silvester h1,
+body.ext-theme-active.ext-theme-silvester h2 {
+    text-shadow: 0 0 16px rgba(255, 213, 74, 0.45), 0 0 34px rgba(255, 79, 163, 0.2);
+    letter-spacing: 0.02em;
+}
+body.ext-theme-active.ext-theme-silvester a:hover { color: #ff4fa3 !important; }
+
+/* Duotone-Icons: Gold + Pink */
+body.ext-theme-active.ext-theme-silvester i[class*="fa-"]:not(.btn i) {
+    --fa-secondary-color: #ff4fa3 !important;
+    --fa-secondary-opacity: 0.85 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 213, 74, 0.5));
+}
+
+body.ext-theme-silvester ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-silvester ::-webkit-scrollbar-track { background: #050711; }
+body.ext-theme-silvester ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ffd54a, #ff4fa3); border-radius: 6px; }
+body.ext-theme-silvester ::selection { background: rgba(255, 213, 74, 0.4); color: #fff; }
+
+#ext-fireworks-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.9;
+}

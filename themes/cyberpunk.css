@@ -1,0 +1,98 @@
+/* Skrime Theme: cyberpunk */
+
+body.ext-theme-cyberpunk,
+body.ext-theme-cyberpunk main,
+body.ext-theme-cyberpunk .page-content {
+    background-image:
+        linear-gradient(rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(ellipse 70% 40% at 50% 0%, rgba(255, 43, 214, 0.2), transparent 70%),
+        radial-gradient(ellipse 70% 40% at 50% 100%, rgba(0, 240, 255, 0.14), transparent 70%) !important;
+    background-size: 44px 44px, 44px 44px, 100% 100%, 100% 100% !important;
+    background-attachment: fixed !important;
+}
+
+body.ext-theme-active.ext-theme-cyberpunk .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-cyberpunk .features:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-cyberpunk .list-group-item:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-cyberpunk .dropdown-menu,
+body.ext-theme-active.ext-theme-cyberpunk .modal-content {
+    background-color: rgba(18, 18, 31, 0.92) !important;
+    border: 1px solid rgba(255, 43, 214, 0.35) !important;
+    border-left: 3px solid #00f0ff !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 18px rgba(255, 43, 214, 0.12);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+body.ext-theme-active.ext-theme-cyberpunk .card:not([style*="background-image"]):hover {
+    border-color: #ff2bd6 !important;
+    border-left-color: #00f0ff !important;
+    box-shadow: 0 0 24px var(--ext-glow), 0 0 40px rgba(0, 240, 255, 0.12);
+}
+
+body.ext-theme-active.ext-theme-cyberpunk .sidebar-wrapper {
+    background-color: #07070f !important;
+    border-right: 1px solid rgba(255, 43, 214, 0.45) !important;
+}
+body.ext-theme-active.ext-theme-cyberpunk .header-bar,
+body.ext-theme-active.ext-theme-cyberpunk .top-header {
+    background-color: rgba(7, 7, 15, 0.9) !important;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.4) !important;
+}
+body.ext-theme-active.ext-theme-cyberpunk .sidebar-menu li.active > a {
+    color: #00f0ff !important;
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.15), transparent) !important;
+    box-shadow: inset 3px 0 0 #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+}
+
+/* Überschriften: leichter Chromatic-Aberration-Effekt */
+body.ext-theme-active.ext-theme-cyberpunk h1,
+body.ext-theme-active.ext-theme-cyberpunk h2 {
+    text-shadow: 2px 0 rgba(0, 240, 255, 0.65), -2px 0 rgba(255, 43, 214, 0.65);
+    letter-spacing: 0.02em;
+}
+
+body.ext-theme-active.ext-theme-cyberpunk a { color: #00f0ff !important; }
+body.ext-theme-active.ext-theme-cyberpunk a:hover { color: #fcee0a !important; }
+
+/* Buttons und aktive Tabs: abgeschnittene Ecken + Magenta-Verlauf */
+body.ext-theme-active.ext-theme-cyberpunk .btn-primary,
+body.ext-theme-active.ext-theme-cyberpunk .btn-success,
+body.ext-theme-active.ext-theme-cyberpunk .btn-info,
+body.ext-theme-active.ext-theme-cyberpunk .nav-pills .nav-link.active {
+    background-image: linear-gradient(135deg, #ff2bd6 0%, #7b2cff 100%) !important;
+    border: none !important;
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    letter-spacing: 0.04em;
+    transition: filter 0.15s ease;
+}
+body.ext-theme-active.ext-theme-cyberpunk .btn-primary:hover,
+body.ext-theme-active.ext-theme-cyberpunk .btn-success:hover,
+body.ext-theme-active.ext-theme-cyberpunk .btn-info:hover {
+    filter: brightness(1.2) saturate(1.2);
+}
+body.ext-theme-active.ext-theme-cyberpunk .nav-pills .nav-link { border-radius: 0 !important; }
+
+/* Duotone-Icons: Magenta + Cyan */
+body.ext-theme-active.ext-theme-cyberpunk i[class*="fa-"]:not(.btn i) {
+    --fa-secondary-color: #00f0ff !important;
+    --fa-secondary-opacity: 0.9 !important;
+    filter: drop-shadow(0 0 4px rgba(255, 43, 214, 0.55));
+}
+
+/* Feine Cyan-Scanlines */
+body.ext-theme-cyberpunk::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9998;
+    background: repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.035) 0, rgba(0, 240, 255, 0.035) 1px, transparent 1px, transparent 4px);
+}
+
+body.ext-theme-cyberpunk ::-webkit-scrollbar { width: 10px; }
+body.ext-theme-cyberpunk ::-webkit-scrollbar-track { background: #07070f; }
+body.ext-theme-cyberpunk ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #ff2bd6, #00f0ff); }
+body.ext-theme-cyberpunk ::selection { background: #ff2bd6; color: #fff; }
