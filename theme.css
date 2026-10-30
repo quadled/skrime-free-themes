@@ -1,0 +1,23 @@
+/* Hintergrund und Textfarbe global ändern */
+body {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+}
+
+/* Links anpassen */
+a {
+    color: #bb86fc !important;
+}
+
+/* Container und Header etwas abheben (Beispiel) */
+header, footer, .card, .panel, nav {
+    background-color: #1e1e1e !important;
+    border: 1px solid #333 !important;
+}
+
+/* Buttons einfärben */
+button, .btn {
+    background-color: #3700b3 !important;
+    color: white !important;
+    border: none !important;
+}

@@ -1,0 +1,165 @@
+{
+  "name": "Skrime Free Themes Repository",
+  "author": "QuadLed",
+  "version": "1.1.0",
+  "repository": "https://github.com/quadled/skrime-free-themes",
+  "updatedAt": "2026-10-30",
+  "themes": {
+    "dracula": {
+      "name": "Dracula Theme",
+      "author": "QuadLed",
+      "icon": "fa-ghost",
+      "effect": null,
+      "vars": "--ext-bg-main: #1e1f29; --ext-bg-card: #282a36; --ext-border: #44475a; --ext-text: #f8f8f2; --ext-text-muted: #9aa7d6; --ext-accent: #ff79c6; --ext-accent-text: #1e1f29; --ext-accent2: #bd93f9; --ext-accent3: #8be9fd; --ext-glow: rgba(189, 147, 249, 0.4);",
+      "preview": {
+        "bg1": "#282a36",
+        "bg2": "#1e1f29",
+        "accent": "#ff79c6",
+        "accent2": "#bd93f9",
+        "text": "#f8f8f2"
+      }
+    },
+    "matrix": {
+      "name": "Matrix Theme",
+      "author": "QuadLed",
+      "icon": "fa-bug",
+      "effect": "matrix",
+      "vars": "--ext-bg-main: #010603; --ext-bg-card: #031208; --ext-border: #0f5a1f; --ext-text: #8dffa8; --ext-text-muted: #2fa24f; --ext-accent: #00ff41; --ext-accent-text: #001a07; --ext-glow: rgba(0, 255, 65, 0.35);",
+      "preview": {
+        "bg1": "#031208",
+        "bg2": "#000000",
+        "accent": "#00ff41",
+        "accent2": "#008f11",
+        "text": "#8dffa8"
+      }
+    },
+    "cyberpunk": {
+      "name": "Cyberpunk",
+      "author": "QuadLed",
+      "icon": "fa-bolt",
+      "effect": null,
+      "vars": "--ext-bg-main: #0a0a14; --ext-bg-card: #12121f; --ext-border: #5b2a86; --ext-text: #e8f9ff; --ext-text-muted: #8ea0ff; --ext-accent: #ff2bd6; --ext-accent-text: #ffffff; --ext-accent2: #00f0ff; --ext-accent3: #fcee0a; --ext-glow: rgba(255, 43, 214, 0.45);",
+      "preview": {
+        "bg1": "#1a0f2e",
+        "bg2": "#0a0a14",
+        "accent": "#ff2bd6",
+        "accent2": "#00f0ff",
+        "text": "#e8f9ff"
+      }
+    },
+    "christmas": {
+      "name": "Winter Theme",
+      "author": "QuadLed",
+      "icon": "fa-snowflake",
+      "effect": "snow",
+      "vars": "--ext-bg-main: #07111f; --ext-bg-card: #0f2238; --ext-border: #2b5c88; --ext-text: #eaf6ff; --ext-text-muted: #8fb8d6; --ext-accent: #7fd4ff; --ext-accent-text: #05172a; --ext-glow: rgba(127, 212, 255, 0.35);",
+      "preview": {
+        "bg1": "#16365a",
+        "bg2": "#07111f",
+        "accent": "#7fd4ff",
+        "accent2": "#eaf6ff",
+        "text": "#eaf6ff"
+      }
+    },
+    "silvester": {
+      "name": "Silvester Theme",
+      "author": "QuadLed",
+      "icon": "fa-champagne-glasses",
+      "effect": "fireworks",
+      "vars": "--ext-bg-main: #070a16; --ext-bg-card: #0f1428; --ext-border: #6b5a2a; --ext-text: #fff6dc; --ext-text-muted: #b9ae8c; --ext-accent: #ffd54a; --ext-accent-text: #1a1300; --ext-accent2: #ff4fa3; --ext-accent3: #00e5ff; --ext-glow: rgba(255, 213, 74, 0.4);",
+      "preview": {
+        "bg1": "#1a1633",
+        "bg2": "#070a16",
+        "accent": "#ffd54a",
+        "accent2": "#ff4fa3",
+        "text": "#fff6dc"
+      }
+    },
+    "halloween": {
+      "name": "Halloween Theme",
+      "author": "QuadLed",
+      "icon": "fa-pumpkin",
+      "effect": "halloween",
+      "vars": "--ext-bg-main: #0d0a12; --ext-bg-card: #1a1220; --ext-border: #5a3414; --ext-text: #ffe9d2; --ext-text-muted: #b79a86; --ext-accent: #ff7a1a; --ext-accent-text: #1a0a00; --ext-accent2: #9b5de5; --ext-accent3: #7cff4d; --ext-glow: rgba(255, 122, 26, 0.4);",
+      "preview": {
+        "bg1": "#2a1238",
+        "bg2": "#0d0a12",
+        "accent": "#ff7a1a",
+        "accent2": "#9b5de5",
+        "text": "#ffe9d2"
+      }
+    },
+    "aprilscherz": {
+      "name": "April, April!",
+      "author": "QuadLed",
+      "icon": "fa-face-grin-wink",
+      "effect": "aprilfools",
+      "vars": "--ext-bg-main: #39ff14; --ext-bg-card: #ff69b4; --ext-border: #ff8800; --ext-text: #ffff00; --ext-text-muted: #ff00ff; --ext-accent: #00ffff; --ext-accent-text: #ff0000; --ext-accent2: #ff0000; --ext-accent3: #0000ff; --ext-glow: rgba(255, 0, 255, 0.7);",
+      "preview": {
+        "bg1": "#39ff14",
+        "bg2": "#ff69b4",
+        "accent": "#00ffff",
+        "accent2": "#ff00ff",
+        "text": "#ffff00"
+      }
+    },
+    "kartoffel": {
+      "name": "Kartoffel Theme",
+      "author": "QuadLed",
+      "icon": "fa-seedling",
+      "effect": "potato",
+      "vars": "--ext-bg-main: #1a120a; --ext-bg-card: #2a1d11; --ext-border: #6b4a2b; --ext-text: #fff1d0; --ext-text-muted: #c2a77a; --ext-accent: #d9a441; --ext-accent-text: #2a1a05; --ext-accent2: #8b5a2b; --ext-accent3: #f0d56a; --ext-glow: rgba(217, 164, 65, 0.4);",
+      "preview": {
+        "bg1": "#3a2814",
+        "bg2": "#1a120a",
+        "accent": "#d9a441",
+        "accent2": "#8b5a2b",
+        "text": "#fff1d0"
+      }
+    },
+    "minimal-purple": {
+      "name": "Minimal Purple",
+      "author": "QuadLed",
+      "icon": "fa-palette",
+      "effect": null,
+      "vars": "--ext-bg-main: #121212; --ext-bg-card: #1e1e1e; --ext-border: #333333; --ext-text: #e0e0e0; --ext-text-muted: #9aa7d6; --ext-accent: #bb86fc; --ext-accent-text: #121212; --ext-accent2: #3700b3; --ext-glow: rgba(187, 134, 252, 0.4);",
+      "preview": {
+        "bg1": "#1e1e1e",
+        "bg2": "#121212",
+        "accent": "#bb86fc",
+        "accent2": "#3700b3",
+        "text": "#e0e0e0"
+      },
+      "cssFile": "themes/minimal-purple.css"
+    },
+    "neon-sunset": {
+      "name": "Neon Sunset",
+      "author": "QuadLed Community",
+      "icon": "fa-sun",
+      "effect": null,
+      "vars": "--ext-bg-main: #0c0814; --ext-bg-card: #180f28; --ext-border: #4d2379; --ext-text: #fbeaff; --ext-text-muted: #af92c9; --ext-accent: #ff4071; --ext-accent-text: #ffffff; --ext-accent2: #ff9b26; --ext-glow: rgba(255, 64, 113, 0.4);",
+      "preview": {
+        "bg1": "#23113c",
+        "bg2": "#0c0814",
+        "accent": "#ff4071",
+        "accent2": "#ff9b26",
+        "text": "#fbeaff"
+      },
+      "cssFile": "themes/neon-sunset.css"
+    },
+    "default": {
+      "name": "Skrime Standard",
+      "author": "Skrime",
+      "icon": "fa-xmark",
+      "effect": null,
+      "vars": "",
+      "preview": {
+        "bg1": "#1e1e1e",
+        "bg2": "#15171C",
+        "accent": "#6c757d",
+        "accent2": "#ffffff",
+        "text": "#ffffff"
+      }
+    }
+  }
+}

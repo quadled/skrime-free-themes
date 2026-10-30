@@ -1,0 +1,33 @@
+/* =====================================================================
+   SKRIME THEME: Neon Sunset
+   Erstellt von: QuadLed Community
+   ===================================================================== */
+
+body.ext-theme-neon-sunset,
+body.ext-theme-neon-sunset main,
+body.ext-theme-neon-sunset .page-content {
+    background-image:
+        radial-gradient(ellipse 70% 50% at 10% 10%, rgba(255, 64, 113, 0.18), transparent 70%),
+        radial-gradient(ellipse 60% 50% at 90% 90%, rgba(255, 155, 38, 0.15), transparent 70%) !important;
+    background-attachment: fixed !important;
+    background-color: #0c0814 !important;
+}
+
+body.ext-theme-active.ext-theme-neon-sunset .card:not([style*="background-image"]),
+body.ext-theme-active.ext-theme-neon-sunset .modal-content,
+body.ext-theme-active.ext-theme-neon-sunset .sidebar-wrapper {
+    border: 1px solid #4d2379 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(255, 64, 113, 0.6) !important;
+}
+
+body.ext-theme-active.ext-theme-neon-sunset .btn-primary {
+    background-image: linear-gradient(135deg, #ff4071 0%, #ff9b26 100%) !important;
+    border: none !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 15px rgba(255, 64, 113, 0.4) !important;
+}
+
+body.ext-theme-active.ext-theme-neon-sunset a:hover {
+    color: #ff9b26 !important;
+    text-shadow: 0 0 8px rgba(255, 155, 38, 0.6) !important;
+}

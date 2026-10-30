@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skrime Themes</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="header-title">
+        <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M12 2a4.5 4.5 0 0 0 0 9 4.5 4.5 0 0 1 0 9 1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2 1 1 0 0 1-1-1V9a2 2 0 0 1 2-2 4.5 4.5 0 0 0 4.5-4.5"></path>
+        </svg>
+        <span>Skrime Themes</span>
+      </div>
+      <span class="badge" id="theme-count-badge">...</span>
+    </header>
+
+    <div class="current-theme-card" id="current-theme-box">
+      <span class="label">Aktives Theme:</span>
+      <div class="theme-info">
+        <div class="theme-preview-dot" id="theme-color-dot"></div>
+        <strong id="active-theme-name">Wird geladen...</strong>
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="theme-select">Theme wechseln:</label>
+      <select id="theme-select" class="theme-dropdown">
+        <option value="">Themes werden geladen...</option>
+      </select>
+    </div>
+
+    <div class="updater-box">
+      <div class="updater-header">
+        <span class="updater-title">GitHub Updater</span>
+        <span class="updater-time" id="last-sync-time">Noch nie geprüft</span>
+      </div>
+      <p class="updater-sub">Quelle: <code>quadled/skrime-free-themes</code></p>
+      
+      <button id="btn-check-updates" class="btn btn-update">
+        <svg class="btn-icon" id="update-spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+        <span id="update-btn-text">Auf Updates prüfen</span>
+      </button>
+
+      <div id="update-status-msg" class="status-msg" style="display: none;"></div>
+    </div>
+
+    <footer class="popup-footer">
+      <a href="https://skrime.eu" target="_blank" class="footer-link">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+        Skrime.eu öffnen
+      </a>
+      <a href="https://github.com/quadled/skrime-free-themes" target="_blank" class="footer-link">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
